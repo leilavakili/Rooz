@@ -1,0 +1,12 @@
+[Unit]
+Description=rooz Web Service
+After=network.target
+
+[Service]
+User=root
+ExecStartPre=/bin/rm -f /tmp/rooz-nodejs.sock
+ExecStart=/usr/bin/node /home/leila/rooz/server.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
