@@ -23,6 +23,7 @@ app.use((req, res) => {
   res.sendFile(path.join(ROOT_DIR, 'pages', 'home.html'));
 });
 
+
 // استارت سرور
 if (fs.existsSync(socketPath)) {
   fs.unlinkSync(socketPath);

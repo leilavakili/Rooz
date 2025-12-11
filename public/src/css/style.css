@@ -15,8 +15,53 @@
 
 /* استفاده‌ی عمومی در کل صفحه */
 body {
-    font-family: 'IranianSans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: 'IranianSans', sans-serif;
 }
 .nazanin {
     font-family: 'BNazanin', 'Iranian Sans', sans-serif;
+}
+
+/* مشترک برای هر دو اسلایدر */
+.price-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 999px;
+    background: #d1d5db; /* خاکستری */
+    outline: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* فقط دایره‌ها کلیک‌پذیر باشند */
+}
+
+/* استایل یکسان دایره‌ها (هر دو طرف) */
+.price-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 2px solid #000000; /* دور مشکی */
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 3;
+}
+.price-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 2px solid #000000;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 3;
+}
+.price-range::-moz-range-track {
+    background: transparent;
+    border: none;
 }
