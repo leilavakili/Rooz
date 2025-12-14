@@ -14,7 +14,8 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="../public/src/css/style.css">
-
+    <link rel="icon" type="image/png" sizes="32x32" href="../app/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../app/favicon.png">
     <style>
 
 
@@ -216,54 +217,430 @@
                 ۱۳۴ مانتو
             </div>
 
-            <!-- مرتب‌سازی -->
-            <div class="relative inline-block text-right">
-                <!-- دکمه اصلی -->
+            <!-- ردیف فیلتر + مرتب‌سازی – فقط موبایل -->
+            <div class="flex items-center justify-between mb-4 lg:hidden w-full">
+
+                <!-- دکمه فیلترها (سمت راست) -->
                 <button
-                        id="sortToggle"
-                        class="inline-flex items-center justify-between w-44 border border-gray-300 px-3 py-2 text-sm bg-white hover:bg-black hover:text-white transition"
+                        id="mobileFilterToggle"
                         type="button"
-                >
-                    <span id="sortLabel">پر فروش ‌ترین</span>
-                    <img
-                            src="../app/assets/arrow-down.png"
-                            alt="باز کردن منو"
-                            class="w-4 h-4 ml-1"
-                    />
+                        class="text-sm ml-6">
+                فیلترها
                 </button>
 
-                <!-- منوی بازشونده -->
+                <!-- مودال فیلتر موبایل -->
                 <div
-                        id="sortMenu"
-                        class="absolute right-0 mt-1 w-44 border border-gray-300 bg-white text-sm shadow-sm z-30 hidden"
+                        id="mobileFilterModal"
+                        class="fixed inset-0 z-40 bg-black/40 hidden lg:hidden"
                 >
-                    <button
-                            class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition"
-                            data-value="قیمت"
+                    <!-- شیت پایین صفحه -->
+                    <div
+                            class="absolute inset-x-0 bottom-0 bg-white rounded-t-2xl max-h-[80vh] overflow-y-auto"
                     >
-                        قیمت
-                    </button>
-                    <button
-                            class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition"
-                            data-value="جدیدترین"
-                    >
-                        جدیدترین
-                    </button>
-                    <button
-                            class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition"
-                            data-value="پرفروش‌ترین"
-                    >
-                        پرفروش‌ترین
-                    </button>
+                        <!-- هدر مودال -->
+                        <div class="flex items-center justify-between px-4 py-3 border-b text-sm">
+                            <button
+                                    id="mobileFilterClose"
+                                    type="button"
+                                    class="text-xl leading-none"
+                            >
+                                ×
+                            </button>
+                            <button type="button" class="text-xs text-gray-600 underline">
+                                حذف فیلترها
+                            </button>
+
+                        </div>
+
+                        <div class="px-4 py-3 space-y-4 text-sm">
+                            <!-- گروه: سایز -->
+                            <div class="border-b border-gray-200 pb-3">
+                                <button
+                                        type="button"
+                                        class="w-full flex items-center gap-2 py-3 text-sm"
+                                        data-accordion-header
+                                >
+                                    <span class="ml-auto">سایز</span>
+                                    <span class="text-xl leading-none" data-accordion-icon>+</span>
+                                </button>
+                                <div
+                                        class="accordion-content overflow-hidden transition-all duration-300"
+                                        data-accordion-content
+                                >
+                                    <div class="pb-3 text-xs">
+                                        <!-- دو ستون در موبایل -->
+                                        <div class="grid grid-cols-2 gap-y-2 gap-x-6" dir="ltr">
+
+                                            <!-- ستون چپ: ایکس اسمال تا فری‌سایز -->
+                                            <div class="space-y-2">
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span class="text-right">ایکس اسمال</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span class="text-right">اسمال</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span class="text-right">مدیوم</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span class="text-right">لارج</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span class="text-right">فری سایز</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- ستون راست: سایزهای عددی -->
+                                            <div class="space-y-2 text-right">
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span>۳۴</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span>۳۶</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span>۳۸</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span>۴۲</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span>۴۴</span>
+                                                </label>
+
+                                                <label class="flex flex-row-reverse items-center gap-2">
+                                                    <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                                    <span>۴۶</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- گروه: برند -->
+                            <div class="border-b border-gray-200 pb-3">
+                                <button
+                                        type="button"
+                                        class="w-full flex items-center gap-2 py-3 text-sm"
+                                        data-accordion-header
+                                >
+                                    <span class="ml-auto">برند</span>
+                                    <span class="text-xl leading-none" data-accordion-icon>+</span>
+                                </button>
+                                <div
+                                        class="accordion-content overflow-hidden transition-all duration-300"
+                                        data-accordion-content
+                                >
+                                    <div class="pb-3 space-y-3 text-xs text-right" id="brand-filter">
+
+                                        <!-- سرچ باکس برند -->
+                                        <div class="border border-[#E0E0E0] px-3 py-2 flex items-center gap-2">
+                                            <input
+                                                    id="brand-search"
+                                                    type="text"
+                                                    placeholder="جستجو ۵ برند"
+                                                    class="w-full text-xs outline-none text-right placeholder-gray-400"
+                                            />
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none">
+                                                <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.5" />
+                                                <line x1="15.5" y1="15.5" x2="20" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+
+                                        <!-- لیست برندها -->
+                                        <label class="flex items-center  gap-2">
+                                            <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />                                    <span>نایک</span>
+                                        </label>
+                                        <label class="flex items-center  gap-2">
+                                            <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />                                    <span>فیل</span>
+                                        </label>
+                                        <label class="flex items-center  gap-2">
+                                            <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />                                    <span>الا</span>
+                                        </label>
+
+
+                                        <!-- پیام وقتی چیزی پیدا نشد -->
+                                        <div id="brand-empty" class="hidden text-gray-400 text-[11px] mt-2">
+                                            برندی با این نام پیدا نشد.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-b border-gray-200 pb-3">
+                                <button
+                                        type="button"
+                                        class="w-full flex items-center gap-2 py-3 text-sm"
+                                        data-accordion-header
+                                >
+                                    <span class="ml-auto">رنگ</span>
+                                    <span class="text-xl leading-none" data-accordion-icon>+</span>
+                                </button>
+                                <div
+                                        class="accordion-content overflow-hidden transition-all duration-300"
+                                        data-accordion-content
+                                >
+                                    <div class="pb-3 text-xs text-right" dir="ltr">
+
+                                        <!-- گرید دو ستونه برای رنگ‌ها -->
+                                        <div class="grid grid-cols-2 gap-y-3 gap-x-8">
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>نارنجی</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#FF7E4A] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>سفید</span>
+                                                <span class="w-4 h-4 rounded-full bg-white border border-[#E0E0E0] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>صورتی</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#FAC6DD] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>مشکی</span>
+                                                <span class="w-4 h-4 rounded-full bg-black inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>بنفش</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#944E87] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>خاکستری</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#8A8A8A] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>قهوه‌ای</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#7F5546] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>آبی</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#038FB8] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>بژ / کرم</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#ECD3B3] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>قرمز</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#D51B32] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>نقره‌ای</span>
+                                                <span class="w-4 h-4 rounded-full inline-block bg-[linear-gradient(238.39deg,#E0E0E0_15.33%,#929191_84.67%)]"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>سبز</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#5FA72C] inline-block"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>طلایی</span>
+                                                <span class="w-4 h-4 rounded-full inline-block bg-[linear-gradient(243.43deg,#E9D3B7_14.58%,#836E51_87.5%)]"></span>
+                                            </label>
+
+                                            <label class="flex items-center justify-end gap-2">
+                                                <span>زرد</span>
+                                                <span class="w-4 h-4 rounded-full bg-[#FEE877] inline-block"></span>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-b border-gray-200 pb-3">
+                                <button
+                                        type="button"
+                                        class="w-full flex items-center gap-2 py-3 text-sm"
+                                        data-accordion-header
+                                >
+                                    <span class="ml-auto">قیمت</span>
+                                    <span class="text-xl leading-none" data-accordion-icon>+</span>
+                                </button>
+                                <div
+                                        class="accordion-content overflow-hidden transition-all duration-300"
+                                        data-accordion-content
+                                >
+                                    <div class="pb-4 pt-1 text-xs text-right space-y-4" id="price-filter">
+
+                                        <!-- خود اسلایدر -->
+                                        <div class="relative h-6" >
+                                            <!-- حداقل -->
+                                            <input
+                                                    type="range"
+                                                    id="price-min"
+                                                    class="price-range"
+                                                    dir="ltr"
+                                                    min="200000"
+                                                    max="100000000"
+                                                    step="100000"
+                                                    value="200000"
+                                            />
+                                            <!-- حداکثر -->
+                                            <input
+                                                    type="range"
+                                                    id="price-max"
+                                                    class="price-range"
+                                                    dir="ltr"
+                                                    min="200000"
+                                                    max="100000000"
+                                                    step="100000"
+                                                    value="100000000"
+                                            />
+                                        </div>
+
+                                        <!-- لیبل‌ها و ورودی‌ها -->
+                                        <div class="mt-6 flex justify-between flex-row-reverse text-xs text-gray-700">
+
+
+                                            <div class="flex flex-col items-start gap-2 ">
+                                                <span>حداقل</span>
+                                                <input
+                                                        id="price-min-input"
+                                                        type="text"
+                                                        class="border border-gray-400 w-[113px] pr-3 py-1 text-xs focus:outline-none"
+                                                        value="۲۰۰٬۰۰۰ تومان"
+                                                        readonly
+                                                />
+                                            </div>
+                                            
+                                            <!-- حداکثر (سمت چپ) -->
+                                            <div class="flex flex-col items-start gap-2 ">
+                                                <span>حداکثر</span>
+                                                <input
+                                                        id="price-max-input"
+                                                        type="text"
+                                                        class="border border-gray-400 w-[113px]  py-1 text-xs focus:outline-none"
+                                                        value="تومان ۱۰۰٬۰۰۰٬۰۰۰"
+                                                        readonly
+                                                />
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="border-b border-gray-200 pb-3">
+                                <button
+                                        type="button"
+                                        class="w-full flex items-center gap-2 py-3 text-sm"
+                                        data-accordion-header
+                                >
+                                    <span class="ml-auto">فصل</span>
+                                    <span class="text-xl leading-none" data-accordion-icon>+</span>
+                                </button>
+                                <div
+                                        class="accordion-content overflow-hidden transition-all duration-300"
+                                        data-accordion-content
+                                >
+                                    <div class="pb-3 space-y-2 text-xs text-right">
+                                        <label class="flex items-center  gap-2">
+                                            <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                            <span>بهار</span>
+                                        </label>
+                                        <label class="flex items-center  gap-2">
+                                            <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                            <span>تابستان</span>
+                                        </label>
+                                        <label class="flex items-center  gap-2">
+                                            <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                            <span>پاییز</span>
+                                        </label>
+                                        <label class="flex items-center  gap-2">
+                                            <input type="checkbox" class="w-4 h-4 border border-[#E0E0E0] cursor-pointer appearance-none checked:bg-black checked:border-black" />
+                                            <span>زمستان</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        <!-- دکمه نمایش نتایج -->
+                        <div class="px-4 py-3 border-t">
+                            <button
+                                    type="button"
+                                    class="w-full bg-black text-white py-3 text-sm text-center"
+                            >
+                                نمایش نتایج (۱۲۰)
+                            </button>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- دراپ‌داون مرتب‌سازی (سمت چپ فیلترها) -->
+                <div class="relative text-right">
+                    <button
+                            id="sortToggle"
+                            type="button"
+                            class="inline-flex items-center justify-between w-40 border border-gray-300 px-3 py-2 text-sm bg-white hover:bg-black hover:text-white transition"
+                    >
+                        <span id="sortLabel">پرفروش‌ترین</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.6199 5.22084L7.81655 9.02417C7.36738 9.47334 6.63238 9.47334 6.18322 9.02417L2.37988 5.22084" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <div
+                            id="sortMenu"
+                            class="absolute right-0 mt-1 w-40 border border-gray-300 bg-white text-sm shadow-sm z-30 hidden"
+                    >
+                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="قیمت">
+                            قیمت
+                        </button>
+                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="جدیدترین">
+                            جدیدترین
+                        </button>
+                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="پرفروش‌ترین">
+                            پرفروش‌ترین
+                        </button>
+                    </div>
+                </div>
+
             </div>
+
+
 
         </div>
 
         <!-- بدنه: گرید محصولات (چپ) + فیلترها (راست در دسکتاپ) -->
         <div class="flex flex-col-reverse lg:flex-row gap-10">
 
-            <aside class="w-[250px] ">
+            <aside class="hidden lg:block lg:w-[250px]">
                 <div class="border border-gray-200 p-4 lg:p-0 lg:border-0">
 
                     <!-- گروه: سایز -->
@@ -610,12 +987,12 @@
 
             <!-- محصولات (چپ در دسکتاپ) -->
             <div class="flex-1">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
                     <!-- ===== کارت 1 ===== -->
                     <div class="swiper-slide">
                         <!-- کارت محصول 2 -->
-                        <article class="w-full max-w-[292px] h-[538px] flex flex-col mx-auto">
+                        <article class="w-full max-w-[292px] max-h-[538px] flex flex-col mx-auto">
 
                             <div class="relative bg-[#F5F5F5] overflow-hidden">
 

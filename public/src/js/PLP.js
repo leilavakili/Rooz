@@ -30,7 +30,7 @@ document.addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', function () {
     // اسلایدر کارت‌های پرفروش‌ترین‌ها (اسلایدر بیرونی)
     const bestsellerSwiper = new Swiper('.bestseller-swiper', {
-        slidesPerView: 1.1,
+        slidesPerView: 2,
         spaceBetween: 16,
         loop: false,
         grabCursor: true,
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const input = document.getElementById('brand-search');
     const container = document.getElementById('brand-filter');
     if (!input || !container) return;
@@ -126,23 +126,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const emptyMessage = document.getElementById('brand-empty');
 
     function filterBrands() {
-    const q = input.value.trim().toLowerCase(); // متن جستجو
-    let visibleCount = 0;
+        const q = input.value.trim().toLowerCase(); // متن جستجو
+        let visibleCount = 0;
 
-    labels.forEach(label => {
-    const name = label.querySelector('span')?.textContent.trim().toLowerCase() || '';
-    const match = q === '' || name.includes(q);
+        labels.forEach(label => {
+            const name = label.querySelector('span')?.textContent.trim().toLowerCase() || '';
+            const match = q === '' || name.includes(q);
 
-    // اگر match نباشه، از لیست مخفی میشه
-    label.style.display = match ? 'flex' : 'none';
-    if (match) visibleCount++;
-});
+            // اگر match نباشه، از لیست مخفی میشه
+            label.style.display = match ? 'flex' : 'none';
+            if (match) visibleCount++;
+        });
 
-    // اگر هیچ برندی نموند، پیام "پیدا نشد" رو نشون بده
-    if (emptyMessage) {
-    emptyMessage.classList.toggle('hidden', visibleCount !== 0);
-}
-}
+        // اگر هیچ برندی نموند، پیام "پیدا نشد" رو نشون بده
+        if (emptyMessage) {
+            emptyMessage.classList.toggle('hidden', visibleCount !== 0);
+        }
+    }
 
     // هر بار که کاربر تایپ می‌کند، فیلتر شود
     input.addEventListener('input', filterBrands);
@@ -206,3 +206,30 @@ maxRange.addEventListener("input", updateTrack);
 
 // مقدار اولیه
 updateTrack();
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const filterToggle = document.getElementById('mobileFilterToggle');
+    const filterModal  = document.getElementById('mobileFilterModal');
+    const filterClose  = document.getElementById('mobileFilterClose');
+
+    if (filterToggle && filterModal) {
+    filterToggle.addEventListener('click', () => {
+    filterModal.classList.remove('hidden');
+});
+}
+
+    if (filterClose && filterModal) {
+    filterClose.addEventListener('click', () => {
+    filterModal.classList.add('hidden');
+});
+}
+
+    // کلیک روی بک‌دراپ هم مودال رو ببنده
+    if (filterModal) {
+    filterModal.addEventListener('click', (e) => {
+    if (e.target === filterModal) {
+    filterModal.classList.add('hidden');
+}
+});
+}
+});

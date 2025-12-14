@@ -116,7 +116,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // اسلایدر کارت‌های پرفروش‌ترین‌ها (اسلایدر بیرونی)
     const bestsellerSwiper = new Swiper('.bestseller-swiper', {
-        slidesPerView: 1.1,
+        slidesPerView: 2,
         spaceBetween: 16,
         loop: false,
         grabCursor: true,
