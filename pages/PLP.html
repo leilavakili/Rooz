@@ -117,16 +117,16 @@
                     class="flex items-center gap-6 py-3 text-[12px] leading-[24px] text-[#111827] overflow-x-auto"
                     dir="rtl"
             >
-                <li class="cursor-pointer whitespace-nowrap">همه محصولات</li>
-                <li class="cursor-pointer whitespace-nowrap">مانتو</li>
-                <li class="cursor-pointer whitespace-nowrap">روسری و شال</li>
-                <li class="cursor-pointer whitespace-nowrap">عبایه</li>
-                <li class="cursor-pointer whitespace-nowrap">اکسسوری</li>
-                <li class="cursor-pointer whitespace-nowrap">کیف</li>
-                <li class="cursor-pointer whitespace-nowrap">عطر</li>
-                <li class="cursor-pointer whitespace-nowrap">کفش</li>
-                <li class="cursor-pointer whitespace-nowrap">بلیز</li>
-                <li class="cursor-pointer whitespace-nowrap">شلوار</li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">همه محصولات</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">مانتو</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">روسری و شال</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">عبایه</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">اکسسوری</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">کیف</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">عطر</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">کفش</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">بلیز</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">شلوار</a></li>
             </ul>
         </div>
     </nav>
@@ -194,16 +194,16 @@
              text-[14px] leading-[24px] text-[#111827]"
                 dir="rtl"
         >
-            <li class="cursor-pointer">همه محصولات</li>
-            <li class="cursor-pointer">مانتو</li>
-            <li class="cursor-pointer">روسری و شال</li>
-            <li class="cursor-pointer">عبایه</li>
-            <li class="cursor-pointer">اکسسوری</li>
-            <li class="cursor-pointer">کیف</li>
-            <li class="cursor-pointer">عطر</li>
-            <li class="cursor-pointer">کفش</li>
-            <li class="cursor-pointer">بلیز</li>
-            <li class="cursor-pointer">شلوار</li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">همه محصولات</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">مانتو</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">روسری و شال</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">عبایه</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">اکسسوری</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">کیف</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">عطر</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">کفش</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">بلیز</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">شلوار</a></li>
         </ul>
     </div>
 </nav>
@@ -228,6 +228,34 @@
                 فیلترها
                 </button>
 
+                <!-- دراپ‌داون مرتب‌سازی (سمت چپ فیلترها) -->
+                <div class="relative text-right">
+                    <button
+                            id="sortToggle"
+                            type="button"
+                            class="inline-flex items-center justify-between w-40 border border-gray-300 px-3 py-2 text-sm bg-white hover:bg-black hover:text-white transition"
+                    >
+                        <span id="sortLabel">پرفروش‌ترین</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.6199 5.22084L7.81655 9.02417C7.36738 9.47334 6.63238 9.47334 6.18322 9.02417L2.37988 5.22084" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <div
+                            id="sortMenu"
+                            class="absolute right-0 mt-1 w-40 border border-gray-300 bg-white text-sm shadow-sm z-30 hidden"
+                    >
+                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="قیمت">
+                            قیمت
+                        </button>
+                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="جدیدترین">
+                            جدیدترین
+                        </button>
+                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="پرفروش‌ترین">
+                            پرفروش‌ترین
+                        </button>
+                    </div>
+                </div>
                 <!-- مودال فیلتر موبایل -->
                 <div
                         id="mobileFilterModal"
@@ -387,6 +415,7 @@
                                 </div>
                             </div>
 
+                            <!-- گروه: رنگ -->
                             <div class="border-b border-gray-200 pb-3">
                                 <button
                                         type="button"
@@ -480,6 +509,7 @@
                                 </div>
                             </div>
 
+                            <!-- گروه: قیمت -->
                             <div class="border-b border-gray-200 pb-3">
                                 <button
                                         type="button"
@@ -555,6 +585,7 @@
 
                             </div>
 
+                            <!-- گروه: فصل -->
                             <div class="border-b border-gray-200 pb-3">
                                 <button
                                         type="button"
@@ -602,34 +633,7 @@
                     </div>
                 </div>
 
-                <!-- دراپ‌داون مرتب‌سازی (سمت چپ فیلترها) -->
-                <div class="relative text-right">
-                    <button
-                            id="sortToggle"
-                            type="button"
-                            class="inline-flex items-center justify-between w-40 border border-gray-300 px-3 py-2 text-sm bg-white hover:bg-black hover:text-white transition"
-                    >
-                        <span id="sortLabel">پرفروش‌ترین</span>
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.6199 5.22084L7.81655 9.02417C7.36738 9.47334 6.63238 9.47334 6.18322 9.02417L2.37988 5.22084" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
 
-                    <div
-                            id="sortMenu"
-                            class="absolute right-0 mt-1 w-40 border border-gray-300 bg-white text-sm shadow-sm z-30 hidden"
-                    >
-                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="قیمت">
-                            قیمت
-                        </button>
-                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="جدیدترین">
-                            جدیدترین
-                        </button>
-                        <button class="w-full text-right px-3 py-2 hover:bg-black hover:text-white transition" data-value="پرفروش‌ترین">
-                            پرفروش‌ترین
-                        </button>
-                    </div>
-                </div>
 
             </div>
 
