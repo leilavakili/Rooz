@@ -65,6 +65,10 @@ app.get('/ELLA', (req, res) => {
   res.sendFile(path.join(ROOT_DIR, 'pages', 'PLP-Brand.html'));
 });
 
+app.get('/Basket', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'Basket.html'));
+});
+
 app.use((req, res) => {
   res.sendFile(path.join(ROOT_DIR, 'pages', 'home.html'));
 });

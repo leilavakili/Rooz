@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فروشگاه اینترنتی روز</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../public/src/css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../app/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../app/favicon.png">
+    <style>
+
+
+        .container{
+            max-width: 1600px;
+        }
+
+
+    </style>
+</head>
+<body class="bg-white">
+<!-- MOBILE VERSION (only < md) -->
+<div class="md:hidden">
+    <!-- TOP BLACK BAR -->
+    <div class="w-full bg-black text-white text-xs py-2 px-4">
+        <div
+                class="max-w-6xl mx-auto flex items-center justify-center gap-2"
+                dir="rtl"
+        >
+      <span class="hidden xs:inline">
+        برندتان را در ویترینی اختصاصی و حرفه‌ای معرفی کنید
+      </span>
+            <a href="#" class="underline underline-offset-2 text-[12px]">
+                آیا فروشنده هستید؟
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER (MOBILE) -->
+    <header class="w-full bg-white border-b border-[#EDEDED]">
+        <div class="max-w-6xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <!-- LEFT ICONS (bag + heart) -->
+                <div class="flex items-center gap-4">
+                    <!-- user (from your desktop code) -->
+                    <button class="p-1">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.00033 7.99992C9.84127 7.99992 11.3337 6.50753 11.3337 4.66658C11.3337 2.82564 9.84127 1.33325 8.00033 1.33325C6.15938 1.33325 4.66699 2.82564 4.66699 4.66658C4.66699 6.50753 6.15938 7.99992 8.00033 7.99992Z"
+                                  stroke="#101010" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.7268 14.6667C13.7268 12.0867 11.1601 10 8.0001 10C4.8401 10 2.27344 12.0867 2.27344 14.6667"
+                                  stroke="#101010" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <!-- hamburger menu -->
+                    <button class="p-1">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H20M4 12H20M4 18H20"
+                                  stroke="#101010" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- LOGO CENTER (same SVG as desktop) -->
+                <div class="flex items-center">
+                    <svg width="64" height="26" viewBox="0 0 64 26" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.740634 22.9342C1.72817 22.9314 9.33883 22.7594 10.6492 22.7213C11.8713 22.698 12.6993 22.517 13.3132 22.3698C13.4168 22.3449 13.5187 22.3129 13.6147 22.2666C13.7598 22.1967 13.8722 22.1268 13.9623 22.0569C14.1197 21.9347 14.2251 21.7527 14.2355 21.5536C14.24 21.467 14.24 21.3567 14.24 21.1994L14.0471 14.9114C14.0471 14.9114 13.8543 9.47395 13.8543 8.43827C13.8543 7.40259 20.0729 7.63142 20.0729 8.5747C20.0729 9.51798 20.0729 21.4854 20.0729 21.4854C20.0729 25.9157 20.015 25.9287 14.1762 25.9157C14.1762 25.9157 1.72812 25.8243 0.740634 25.8243C-0.246857 25.8243 -0.246898 22.9369 0.740634 22.9342ZM14.054 0.832942C15.589 -0.277647 18.4903 -0.277647 20.0254 0.832942C21.5237 1.91696 21.5237 4.11804 20.0254 5.20206C18.4903 6.31265 15.2145 6.31497 13.8954 5.02369C12.7384 3.891 12.5557 1.91696 14.054 0.832942Z"
+                              fill="#101010"/>
+                        <path d="M22.7387 25.9287C22.0022 25.9287 22.0022 23.1942 22.7387 23.1942C23.4752 23.1942 31.3189 22.8484 32.6472 22.8104C33.9755 22.785 34.9808 22.7723 35.6629 22.6583C36.345 22.5442 36.5963 22.3033 36.7399 22.0498C36.9014 21.809 36.9553 21.6188 36.9553 21.1371L36.8604 19.6621C36.7926 18.6096 35.9192 17.7906 34.8645 17.7906H29.1006C27.996 17.7906 27.1006 16.8949 27.1006 15.7903C27.1006 15.2641 27.1006 14.7873 27.1006 14.5867C27.1006 14.0338 27.1006 11.3828 27.1006 11.3828C27.1006 6.28159 26.4404 6.83838 31.651 6.83838H36.2014C43.2437 6.98081 42.125 5.98355 42.125 11.0215V21.4604C41.7611 26.926 43.2437 25.9287 36.0398 25.9287C36.0398 25.9287 23.4752 25.9287 22.7387 25.9287Z"
+                              fill="#101010"/>
+                        <path d="M44.7086 23.042C45.4254 23.042 53.3248 22.8484 54.6172 22.8104C55.9276 22.785 56.7174 22.6583 57.4175 22.5061C57.873 22.4072 58.0704 22.3047 58.2059 22.2006C58.3417 22.0962 58.4647 21.9677 58.5315 21.81C58.5812 21.6929 58.5937 21.5763 58.5937 21.3845L58.0151 15.0732C58.0151 15.0732 57.8223 9.69596 57.8223 8.5877C57.8223 7.47944 64 7.47944 64 8.5877C64 9.69596 64 21.4984 64 21.4984C64 25.9287 64 25.9287 57.9956 25.9287C57.9956 25.9287 45.2206 25.7801 44.7086 25.7801C44.1967 25.7801 43.9919 23.042 44.7086 23.042Z"
+                              fill="#101010"/>
+                    </svg>
+                </div>
+
+                <!-- RIGHT ICONS (user + hamburger) -->
+                <div class="flex items-center gap-4">
+                    <!-- bag (from your desktop code) -->
+                    <button class="p-1">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 5.11334V4.46667C5 2.96667 6.20667 1.49334 7.70667 1.35334C9.49333 1.18001 11 2.58667 11 4.34001V5.26001"
+                                  stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M5.99988 14.6666H9.99988C12.6799 14.6666 13.1599 13.5933 13.2999 12.2866L13.7999 8.28659C13.9799 6.65992 13.5132 5.33325 10.6666 5.33325H5.33322C2.48655 5.33325 2.01988 6.65992 2.19988 8.28659L2.69988 12.2866C2.83988 13.5933 3.31988 14.6666 5.99988 14.6666Z"
+                                  stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <!-- heart (from your desktop code) -->
+                    <button class="p-1">
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.50393 9.7941L9.32259 15.6547C9.42036 15.7532 9.57964 15.7532 9.67741 15.6547L15.4961 9.7941C17.0013 8.278 17.0013 5.81992 15.4961 4.30382C13.9908 2.78772 11.5503 2.78772 10.0451 4.30382L9.67741 4.67416C9.57964 4.77264 9.42036 4.77264 9.32259 4.67416L8.9549 4.30382C7.44966 2.78772 5.00918 2.78772 3.50393 4.30382C1.99869 5.81992 1.99869 8.27801 3.50393 9.7941Z"
+                                  stroke="#101010"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION (MOBILE) -->
+    <nav class="w-full border-b border-[#E5E7EB]">
+        <div class="max-w-6xl mx-auto px-4">
+            <ul
+                    class="flex items-center gap-6 py-3 text-[12px] leading-[24px] text-[#111827] overflow-x-auto"
+                    dir="rtl"
+            >
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">همه محصولات</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">مانتو</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">روسری و شال</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">عبایه</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">اکسسوری</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">کیف</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">عطر</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">کفش</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">بلیز</a></li>
+                <li><a href="/product" class="cursor-pointer whitespace-nowrap">شلوار</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<header class="w-full bg-white py-3 border-b border-[#EDEDED] hidden md:block" dir="ltr">
+    <!-- container -->
+    <div class="container mx-auto mb-2">
+        <div class="flex items-center gap-4">
+
+            <!-- icons, seller -->
+            <div class="flex items-center gap-3 text-xs md:text-sm text-gray-700">
+                <button class="p-1">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.00033 7.99992C9.84127 7.99992 11.3337 6.50753 11.3337 4.66658C11.3337 2.82564 9.84127 1.33325 8.00033 1.33325C6.15938 1.33325 4.66699 2.82564 4.66699 4.66658C4.66699 6.50753 6.15938 7.99992 8.00033 7.99992Z" stroke="#101010" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.7268 14.6667C13.7268 12.0867 11.1601 10 8.0001 10C4.8401 10 2.27344 12.0867 2.27344 14.6667" stroke="#101010" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="p-1">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 5.11334V4.46667C5 2.96667 6.20667 1.49334 7.70667 1.35334C9.49333 1.18001 11 2.58667 11 4.34001V5.26001" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.99988 14.6666H9.99988C12.6799 14.6666 13.1599 13.5933 13.2999 12.2866L13.7999 8.28659C13.9799 6.65992 13.5132 5.33325 10.6666 5.33325H5.33322C2.48655 5.33325 2.01988 6.65992 2.19988 8.28659L2.69988 12.2866C2.83988 13.5933 3.31988 14.6666 5.99988 14.6666Z" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="p-1">
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.50393 9.7941L9.32259 15.6547C9.42036 15.7532 9.57964 15.7532 9.67741 15.6547L15.4961 9.7941C17.0013 8.278 17.0013 5.81992 15.4961 4.30382C13.9908 2.78772 11.5503 2.78772 10.0451 4.30382L9.67741 4.67416C9.57964 4.77264 9.42036 4.77264 9.32259 4.67416L8.9549 4.30382C7.44966 2.78772 5.00918 2.78772 3.50393 4.30382C1.99869 5.81992 1.99869 8.27801 3.50393 9.7941Z" stroke="#101010"/>
+                    </svg>
+                </button>
+                <a href="#" class="underline underline-offset-2 text-[12px] text-[#101010]">آیا فروشنده هستید؟</a>
+            </div>
+
+            <!-- search -->
+            <div class="flex-1 flex justify-center">
+                <div class="flex flex-row-reverse items-center gap-[6px] w-full max-w-[395px] h-8 bg-[#F6F6F8] rounded-[1px] px-3">
+                    <!-- آیکن سمت راست -->
+                    <div class="flex-shrink-0 flex items-center justify-center">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.66634 14.4999C3.89967 14.4999 0.833008 11.4333 0.833008 7.66659C0.833008 3.89992 3.89967 0.833252 7.66634 0.833252C11.433 0.833252 14.4997 3.89992 14.4997 7.66659C14.4997 11.4333 11.433 14.4999 7.66634 14.4999ZM7.66634 1.83325C4.44634 1.83325 1.83301 4.45325 1.83301 7.66659C1.83301 10.8799 4.44634 13.4999 7.66634 13.4999C10.8863 13.4999 13.4997 10.8799 13.4997 7.66659C13.4997 4.45325 10.8863 1.83325 7.66634 1.83325Z" fill="#6C717A"/>
+                            <path d="M14.6666 15.1666C14.54 15.1666 14.4133 15.12 14.3133 15.02L12.98 13.6866C12.7866 13.4933 12.7866 13.1733 12.98 12.98C13.1733 12.7866 13.4933 12.7866 13.6866 12.98L15.02 14.3133C15.2133 14.5066 15.2133 14.8266 15.02 15.02C14.92 15.12 14.7933 15.1666 14.6666 15.1666Z" fill="#6C717A"/>
+                        </svg>
+                    </div>
+
+                    <input id="searchInput" type="text" placeholder="جستجو" dir="rtl" class="flex-1 bg-transparent outline-none border-none text-xs md:text-sm text-right placeholder:text-[#6C717A] p-1 pb-2"/>
+                </div>
+            </div>
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <svg width="64" height="26" viewBox="0 0 64 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.740634 22.9342C1.72817 22.9314 9.33883 22.7594 10.6492 22.7213C11.8713 22.698 12.6993 22.517 13.3132 22.3698C13.4168 22.3449 13.5187 22.3129 13.6147 22.2666C13.7598 22.1967 13.8722 22.1268 13.9623 22.0569C14.1197 21.9347 14.2251 21.7527 14.2355 21.5536C14.24 21.467 14.24 21.3567 14.24 21.1994L14.0471 14.9114C14.0471 14.9114 13.8543 9.47395 13.8543 8.43827C13.8543 7.40259 20.0729 7.63142 20.0729 8.5747C20.0729 9.51798 20.0729 21.4854 20.0729 21.4854C20.0729 25.9157 20.015 25.9287 14.1762 25.9157C14.1762 25.9157 1.72812 25.8243 0.740634 25.8243C-0.246857 25.8243 -0.246898 22.9369 0.740634 22.9342ZM14.054 0.832942C15.589 -0.277647 18.4903 -0.277647 20.0254 0.832942C21.5237 1.91696 21.5237 4.11804 20.0254 5.20206C18.4903 6.31265 15.2145 6.31497 13.8954 5.02369C12.7384 3.891 12.5557 1.91696 14.054 0.832942Z" fill="#101010"/>
+                    <path d="M22.7387 25.9287C22.0022 25.9287 22.0022 23.1942 22.7387 23.1942C23.4752 23.1942 31.3189 22.8484 32.6472 22.8104C33.9755 22.785 34.9808 22.7723 35.6629 22.6583C36.345 22.5442 36.5963 22.3033 36.7399 22.0498C36.9014 21.809 36.9553 21.6188 36.9553 21.1371L36.8604 19.6621C36.7926 18.6096 35.9192 17.7906 34.8645 17.7906H29.1006C27.996 17.7906 27.1006 16.8949 27.1006 15.7903C27.1006 15.2641 27.1006 14.7873 27.1006 14.5867C27.1006 14.0338 27.1006 11.3828 27.1006 11.3828C27.1006 6.28159 26.4404 6.83838 31.651 6.83838H36.2014C43.2437 6.98081 42.125 5.98355 42.125 11.0215V21.4604C41.7611 26.926 43.2437 25.9287 36.0398 25.9287C36.0398 25.9287 23.4752 25.9287 22.7387 25.9287Z" fill="#101010"/>
+                    <path d="M44.7086 23.042C45.4254 23.042 53.3248 22.8484 54.6172 22.8104C55.9276 22.785 56.7174 22.6583 57.4175 22.5061C57.873 22.4072 58.0704 22.3047 58.2059 22.2006C58.3417 22.0962 58.4647 21.9677 58.5315 21.81C58.5812 21.6929 58.5937 21.5763 58.5937 21.3845L58.0151 15.0732C58.0151 15.0732 57.8223 9.69596 57.8223 8.5877C57.8223 7.47944 64 7.47944 64 8.5877C64 9.69596 64 21.4984 64 21.4984C64 25.9287 64 25.9287 57.9956 25.9287C57.9956 25.9287 45.2206 25.7801 44.7086 25.7801C44.1967 25.7801 43.9919 23.042 44.7086 23.042Z" fill="#101010"/>
+                </svg>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<nav class="w-full border-b border-[#E5E7EB] p-4 hidden md:block">
+    <div class="container mx-auto px-4">
+        <ul
+                class=" flex justify-center items-center gap-12
+             text-[14px] leading-[24px] text-[#111827]"
+                dir="rtl"
+        >
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">همه محصولات</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">مانتو</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">روسری و شال</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">عبایه</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">اکسسوری</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">کیف</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">عطر</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">کفش</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">بلیز</a></li>
+            <li><a href="/product" class="cursor-pointer whitespace-nowrap">شلوار</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <div class="max-w-6xl mx-auto px-4 md:px-8 py-8">
+        <h1 class="text-2xl font-semibold mb-4">سبد خرید شما خالی است</h1>
+        <p class="text-gray-600 mb-6">برای افزودن محصولات به سبد خرید، به صفحه محصولات مراجعه کنید.</p>
+        <a href="/product" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+            بازگشت به صفحه محصولات
+        </a>
+    </div>
+</main>
+<footer class="w-full bg-white pt-12 pb-6 border-t" dir="rtl">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+
+        <!-- بالا: فرم ایمیل + لینک‌ها -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 items-start text-center md:text-right">
+
+            <!-- ستون: با روز -->
+            <div class="text-sm leading-7">
+                <h4 class="font-semibold mb-2">با روز</h4>
+                <ul class="space-y-1 text-gray-700">
+                    <li><a href="#" class="hover:text-black">مجله روز</a></li>
+                    <li><a href="#" class="hover:text-black">درباره روز</a></li>
+                    <li><a href="#" class="hover:text-black">ثبت نام فروشندگان</a></li>
+                    <li><a href="#" class="hover:text-black">قوانین سایت</a></li>
+                    <li><a href="#" class="hover:text-black">پشتیبانی</a></li>
+                    <li><a href="#" class="hover:text-black">ثبت شکایات</a></li>
+                </ul>
+            </div>
+
+            <!-- ستون: خدمات مشتریان -->
+            <div class="text-sm leading-7">
+                <h4 class="font-semibold mb-2">خدمات مشتریان</h4>
+                <ul class="space-y-1 text-gray-700 mb-4">
+                    <li><a href="#" class="hover:text-black">سوالات متداول</a></li>
+                    <li><a href="#" class="hover:text-black">پیگیری سفارش</a></li>
+                    <li><a href="#" class="hover:text-black">روش ثبت سفارش</a></li>
+                    <li><a href="#" class="hover:text-black">رویه ارسال سفارش</a></li>
+                    <li><a href="#" class="hover:text-black">حریم خصوصی</a></li>
+                </ul>
+            </div>
+
+            <!-- ستون: برندها -->
+            <div class="text-sm leading-7">
+                <h4 class="font-semibold mb-2">برندها</h4>
+                <ul class="space-y-1 text-gray-700">
+                    <li><a href="#" class="hover:text-black">ویل</a></li>
+                    <li><a href="#" class="hover:text-black">فیلی</a></li>
+                    <li><a href="#" class="hover:text-black">نایکی</a></li>
+                    <li><a href="#" class="hover:text-black">آر</a></li>
+                </ul>
+            </div>
+
+            <!-- فرم ایمیل (دو ستون آخر) -->
+            <div class="md:col-span-2 flex flex-col items-center md:items-end text-center md:text-right">
+
+                <!-- فرم -->
+                <form class="flex w-full max-w-lg border border-black h-10 overflow-hidden">
+                    <input
+                            type="email"
+                            placeholder="ایمیل شما"
+                            class="flex-1 px-3 text-sm outline-none text-right"
+                    />
+                    <button
+                            type="submit"
+                            class="w-[120px] bg-black text-white text-sm flex items-center justify-center"
+                    >
+                        ثبت
+                    </button>
+                </form>
+
+                <!-- متن زیر فرم -->
+                <p class="mt-4 text-xs md:text-sm text-gray-600 leading-6 max-w-lg">
+                    با ثبت‌نام، شما موافقت می‌کنید که ایمیل‌هایی درباره‌ٔ تازه‌ترین کالکشن‌ها،
+                    همکاری‌های جدید برندها و پیشنهادهای ویژه فشن روز دریافت کنید. شما بر اساس قوانین
+                    حریم خصوصی از حقوق مشخصی برخوردارید و می‌توانید در هر زمان اشتراک خود را لغو کنید.
+                    برای اطلاعات بیشتر، به سیاست حفظ حریم خصوصی ما مراجعه نمایید.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- خط جداکننده پایین -->
+        <div
+                class="border-t mt-10 pt-4 flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-4 text-xs text-black"
+                dir="ltr"
+        >
+            <!-- آیکن‌های شبکه‌های اجتماعی -->
+            <div class="flex items-center gap-5 text-lg justify-center md:justify-start">
+                <a href="#" class="hover:text-black"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-youtube"></i></a>
+            </div>
+
+            <!-- متن کپی‌رایت -->
+            <div class="text-[11px] md:text-xs text-center md:text-right" dir="rtl">
+                کلیه حقوق این سایت محفوظ و متعلق به سایت روز می‌باشد.
+                <span class="text-gray-500">(نسخه 1.0.0)</span>
+            </div>
+        </div>
+
+    </div>
+</footer>
+</body>
+</html>
