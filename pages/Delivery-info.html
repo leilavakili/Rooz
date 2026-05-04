@@ -15,12 +15,16 @@
         .container-custom {
             max-width: 1600px;
         }
+
+        .cart-item + .cart-item {
+            margin-top: 18px;
+        }
     </style>
 </head>
 <body class="bg-[#F3F3F3] text-[#101010] min-h-screen flex flex-col">
 
 <!-- MOBILE HEADER -->
-<div class="md:hidden bg-white border-b border-[#E5E5E5]">
+<div class="md:hidden bg-white border-b border-[#D9D9D9]">
     <div class="px-4 py-4 flex items-center justify-between">
         <div class="flex items-center gap-4">
             <button class="p-1">
@@ -29,11 +33,12 @@
                     <path d="M13.7268 14.6667C13.7268 12.0867 11.1601 10 8.0001 10C4.8401 10 2.27344 12.0867 2.27344 14.6667" stroke="#101010" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
-            <button class="p-1">
+            <button class="p-1 relative">
                 <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 5.11334V4.46667C5 2.96667 6.20667 1.49334 7.70667 1.35334C9.49333 1.18001 11 2.58667 11 4.34001V5.26001" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5.99988 14.6666H9.99988C12.6799 14.6666 13.1599 13.5933 13.2999 12.2866L13.7999 8.28659C13.9799 6.65992 13.5132 5.33325 10.6666 5.33325H5.33322C2.48655 5.33325 2.01988 6.65992 2.19988 8.28659L2.69988 12.2866C2.83988 13.5933 3.31988 14.6666 5.99988 14.6666Z" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                <span class="absolute -top-1 -right-1 text-[9px]">۳</span>
             </button>
             <button class="p-1">
                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,11 +66,12 @@
                         <path d="M13.7268 14.6667C13.7268 12.0867 11.1601 10 8.0001 10C4.8401 10 2.27344 12.0867 2.27344 14.6667" stroke="#101010" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-                <button class="p-1">
+                <button class="p-1 relative">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 5.11334V4.46667C5 2.96667 6.20667 1.49334 7.70667 1.35334C9.49333 1.18001 11 2.58667 11 4.34001V5.26001" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M5.99988 14.6666H9.99988C12.6799 14.6666 13.1599 13.5933 13.2999 12.2866L13.7999 8.28659C13.9799 6.65992 13.5132 5.33325 10.6666 5.33325H5.33322C2.48655 5.33325 2.01988 6.65992 2.19988 8.28659L2.69988 12.2866C2.83988 13.5933 3.31988 14.6666 5.99988 14.6666Z" stroke="#101010" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="absolute -top-1 -right-1 text-[9px]">۳</span>
                 </button>
                 <button class="p-1">
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,18 +122,111 @@
 </nav>
 
 <main class="flex-1">
-    <section class="container-custom mx-auto px-6 md:px-10">
-        <div class="min-h-[560px] md:min-h-[700px] flex flex-col items-center justify-center text-center">
-            <h1 class="text-[28px] md:text-[52px] font-semibold mb-20 md:mb-28">سبد خرید</h1>
+    <section class="container-custom mx-auto px-6 md:px-10 pt-8 md:pt-14 pb-16 md:pb-24">
+        <h1 class="text-[28px] md:text-[56px] font-semibold text-right mb-8 md:mb-12">سبد خرید</h1>
 
-            <div class="flex flex-col items-center max-w-[900px] mx-auto">
-                <svg width="76" height="82" viewBox="0 0 76 82" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-6 md:mb-8">
-                    <path d="M38 0C29.7157 0 23 6.71573 23 15V21.25H18.75C10.4657 21.25 3.75 27.9657 3.75 36.25V62.5C3.75 72.8553 12.1447 81.25 22.5 81.25H53.5C63.8553 81.25 72.25 72.8553 72.25 62.5V36.25C72.25 27.9657 65.5343 21.25 57.25 21.25H53V15C53 6.71573 46.2843 0 38 0ZM29 15C29 10.0294 33.0294 6 38 6C42.9706 6 47 10.0294 47 15V21.25H29V15ZM23.5 45.75C26.5376 45.75 29 48.2124 29 51.25C29 54.2876 26.5376 56.75 23.5 56.75C20.4624 56.75 18 54.2876 18 51.25C18 48.2124 20.4624 45.75 23.5 45.75ZM52.5 45.75C55.5376 45.75 58 48.2124 58 51.25C58 54.2876 55.5376 56.75 52.5 56.75C49.4624 56.75 47 54.2876 47 51.25C47 48.2124 49.4624 45.75 52.5 45.75Z" fill="#101010"/>
-                </svg>
+        <div class="grid grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] gap-8 lg:gap-16 items-start">
 
-                <p class="text-[18px] md:text-[28px] leading-8 md:leading-[48px] text-[#101010] max-w-[920px]">
-                    سبد خرید شما در حال حاضر خالی است. لطفاً برای ادامه خرید، محصولی را به سبد اضافه کنید.
-                </p>
+            <!-- SUMMARY -->
+            <aside class="order-2 lg:order-2 lg:sticky lg:top-8">
+                <div class="bg-[#ECECEF] p-5 md:p-6">
+                    <div class="space-y-7 text-[15px] md:text-[16px]">
+                        <div class="flex items-center justify-between">
+                            <span>قیمت کالاها (۳)</span>
+                            <span>۱.۹۷۰.۰۰۰ تومان</span>
+                        </div>
+
+                        <div class="flex items-center justify-between text-[#35C759]">
+                            <span>تخفیف</span>
+                            <div class="text-left">
+                                <span>۴۰۰.۰۰۰ تومان</span>
+                                <span class="mr-2">(٪۶)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span>جمع خرید با تخفیف</span>
+                            <span>۱.۱۳۰.۰۰۰ تومان</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full h-[58px] bg-black text-white text-[18px] mt-8">تایید و تکمیل سفارش</button>
+                </div>
+            </aside>
+
+            <!-- ITEMS -->
+            <div class="order-1 lg:order-1 space-y-6 md:space-y-8">
+
+                <article class="cart-item grid grid-cols-1 md:grid-cols-[300px_1fr_220px] gap-4 md:gap-8 items-start">
+                    <div class="w-full max-w-[300px] md:max-w-none mx-auto md:mx-0 bg-[#E7E7E7]">
+                        <img src="../app/clothes/1.jpeg" alt="مانتو ژاکارد" class="w-full h-auto object-cover aspect-[0.95/1]" />
+                    </div>
+
+                    <div class="text-right md:pt-2 space-y-2 text-[16px] md:text-[18px] leading-8">
+                        <div>مانتو ژاکارد</div>
+                        <div>برند ول</div>
+                        <div>رنگ: مشکی</div>
+                        <div>سایز: ۳۶</div>
+                        <div>تعداد: ۱</div>
+
+                        <div class="flex items-center justify-end gap-5 pt-3 text-[#A0A0A7] text-[15px] md:text-[16px]">
+                            <button>پاک کردن</button>
+                            <button>ویرایش</button>
+                        </div>
+
+                        <div class="flex items-center justify-end gap-2 pt-1 text-[15px] md:text-[16px]">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V11H13V17ZM13 9H11V7H13V9Z" fill="#101010"/>
+                            </svg>
+                            <span>فقط ۲ عدد باقی مانده</span>
+                        </div>
+                    </div>
+
+                    <div class="text-right md:text-left md:pt-1 text-[20px] md:text-[24px] whitespace-nowrap">۳۹۹.۰۰۰ تومان</div>
+                </article>
+
+                <article class="cart-item grid grid-cols-1 md:grid-cols-[300px_1fr_220px] gap-4 md:gap-8 items-start">
+                    <div class="w-full max-w-[300px] md:max-w-none mx-auto md:mx-0 bg-[#E7E7E7]">
+                        <img src="../app/clothes/1.jpeg" alt="مانتو ژاکارد" class="w-full h-auto object-cover aspect-[0.95/1]" />
+                    </div>
+
+                    <div class="text-right md:pt-2 space-y-2 text-[16px] md:text-[18px] leading-8">
+                        <div>مانتو ژاکارد</div>
+                        <div>برند ول</div>
+                        <div>رنگ: مشکی</div>
+                        <div>سایز: ۳۶</div>
+                        <div>تعداد: ۱</div>
+
+                        <div class="flex items-center justify-end gap-5 pt-3 text-[#A0A0A7] text-[15px] md:text-[16px]">
+                            <button>پاک کردن</button>
+                            <button>ویرایش</button>
+                        </div>
+                    </div>
+
+                    <div class="text-right md:text-left md:pt-1 text-[20px] md:text-[24px] whitespace-nowrap">۳۹۹.۰۰۰ تومان</div>
+                </article>
+
+                <article class="cart-item grid grid-cols-1 md:grid-cols-[300px_1fr_220px] gap-4 md:gap-8 items-start">
+                    <div class="w-full max-w-[300px] md:max-w-none mx-auto md:mx-0 bg-[#E7E7E7]">
+                        <img src="../app/clothes/1.jpeg" alt="مانتو ژاکارد" class="w-full h-auto object-cover aspect-[0.95/1]" />
+                    </div>
+
+                    <div class="text-right md:pt-2 space-y-2 text-[16px] md:text-[18px] leading-8">
+                        <div>مانتو ژاکارد</div>
+                        <div>برند ول</div>
+                        <div>رنگ: مشکی</div>
+                        <div>سایز: ۳۶</div>
+                        <div>تعداد: ۱</div>
+
+                        <div class="flex items-center justify-end gap-5 pt-3 text-[#A0A0A7] text-[15px] md:text-[16px]">
+                            <button>پاک کردن</button>
+                            <button>ویرایش</button>
+                        </div>
+                    </div>
+
+                    <div class="text-right md:text-left md:pt-1 text-[20px] md:text-[24px] whitespace-nowrap">۳۹۹.۰۰۰ تومان</div>
+                </article>
+
             </div>
         </div>
     </section>
@@ -199,6 +298,15 @@
         </div>
     </div>
 </footer>
+
+<!-- MOBILE CHECKOUT BAR -->
+<div class="md:hidden fixed bottom-0 inset-x-0 bg-white border-t border-[#D9D9D9] p-4 z-50">
+    <div class="flex items-center justify-between mb-3 text-sm">
+        <span>جمع کل</span>
+        <span>۱.۱۳۰.۰۰۰ تومان</span>
+    </div>
+    <button class="w-full h-[48px] bg-black text-white text-sm">تایید و تکمیل سفارش</button>
+</div>
 
 </body>
 </html>
