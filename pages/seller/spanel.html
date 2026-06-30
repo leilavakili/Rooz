@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پنل فروشنده | روز</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../public/src/css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../app/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../app/favicon.png">
+
+    <style>
+        @font-face {
+            font-family: 'IRANSansX';
+            src: url('../../public/fonts/A-Iranian-Sans/IRANSansX-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'IRANSansX';
+            src: url('../../public/fonts/A-Iranian-Sans/IRANSansX-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'IRANSansX';
+            src: url('../../public/fonts/A-Iranian-Sans/IRANSansX-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        html, body { font-family: 'IRANSansX', sans-serif; }
+
+        .wizard-input {
+            height: 50px;
+            border: 1px solid #D9D9D9;
+            padding: 0 16px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            background: white;
+        }
+        .wizard-input::placeholder { color: #8D8D8D; }
+
+        .wizard-textarea {
+            min-height: 90px;
+            border: 1px solid #D9D9D9;
+            padding: 14px 16px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            background: white;
+            resize: none;
+            font-family: 'IRANSansX', sans-serif;
+        }
+        .wizard-textarea::placeholder { color: #8D8D8D; }
+
+        .upload-box {
+            border: 1px dashed #D9D9D9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #8D8D8D;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            overflow: hidden;
+        }
+        .upload-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .nav-item { color: #9CA3AF; font-size: 13px; }
+        .nav-item.active { color: #101010; font-weight: 500; }
+
+        .avatar-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #7C9473;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
+
+        table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        table.data-table th {
+            text-align: right;
+            color: #6B6B6B;
+            font-weight: 400;
+            padding: 10px 12px;
+            border-bottom: 1px solid #EDEDED;
+            white-space: nowrap;
+        }
+        table.data-table td {
+            text-align: right;
+            padding: 12px 12px;
+            border-bottom: 1px solid #F3F3F3;
+            white-space: nowrap;
+        }
+
+        .stat-card { border: 1px solid #EDEDED; border-radius: 4px; padding: 16px; }
+
+        .settings-field input, .settings-field textarea {
+            width: 100%;
+            border: 1px solid #D9D9D9;
+            padding: 10px 14px;
+            font-size: 13px;
+            outline: none;
+            background: white;
+            font-family: 'IRANSansX', sans-serif;
+        }
+        .settings-field input[readonly], .settings-field textarea[readonly] {
+            border-color: #EDEDED;
+            color: #4B4B4B;
+        }
+        .settings-field input.editing, .settings-field textarea.editing {
+            border-color: #101010;
+            color: #101010;
+        }
+        .settings-field label { font-size: 12px; color: #6B6B6B; display: block; margin-bottom: 6px; }
+
+        .settings-tab { font-size: 14px; color: #9CA3AF; padding-bottom: 10px; }
+        .settings-tab.active { color: #101010; font-weight: 500; border-bottom: 2px solid #101010; }
+    </style>
+</head>
+<body class="bg-white text-[#101010] min-h-screen">
+
+<!-- TOP BAR -->
+<header class="w-full bg-white border-b border-[#EDEDED]">
+    <div class="flex items-center justify-between px-6 py-3">
+        <div class="flex items-center gap-2">
+            <label class="avatar-circle" id="topAvatar">
+                <input id="topAvatarInput" type="file" accept="image/*" class="hidden" />
+                R
+            </label>
+            <span class="text-[14px]">برند راینا</span>
+        </div>
+
+        <a href="/" class="flex items-center">
+            <svg width="56" height="23" viewBox="0 0 64 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.740634 22.9342C1.72817 22.9314 9.33883 22.7594 10.6492 22.7213C11.8713 22.698 12.6993 22.517 13.3132 22.3698C13.4168 22.3449 13.5187 22.3129 13.6147 22.2666C13.7598 22.1967 13.8722 22.1268 13.9623 22.0569C14.1197 21.9347 14.2251 21.7527 14.2355 21.5536C14.24 21.467 14.24 21.3567 14.24 21.1994L14.0471 14.9114C14.0471 14.9114 13.8543 9.47395 13.8543 8.43827C13.8543 7.40259 20.0729 7.63142 20.0729 8.5747C20.0729 9.51798 20.0729 21.4854 20.0729 21.4854C20.0729 25.9157 20.015 25.9287 14.1762 25.9157C14.1762 25.9157 1.72812 25.8243 0.740634 25.8243C-0.246857 25.8243 -0.246898 22.9369 0.740634 22.9342ZM14.054 0.832942C15.589 -0.277647 18.4903 -0.277647 20.0254 0.832942C21.5237 1.91696 21.5237 4.11804 20.0254 5.20206C18.4903 6.31265 15.2145 6.31497 13.8954 5.02369C12.7384 3.891 12.5557 1.91696 14.054 0.832942Z" fill="#101010"/>
+                <path d="M22.7387 25.9287C22.0022 25.9287 22.0022 23.1942 22.7387 23.1942C23.4752 23.1942 31.3189 22.8484 32.6472 22.8104C33.9755 22.785 34.9808 22.7723 35.6629 22.6583C36.345 22.5442 36.5963 22.3033 36.7399 22.0498C36.9014 21.809 36.9553 21.6188 36.9553 21.1371L36.8604 19.6621C36.7926 18.6096 35.9192 17.7906 34.8645 17.7906H29.1006C27.996 17.7906 27.1006 16.8949 27.1006 15.7903C27.1006 15.2641 27.1006 14.7873 27.1006 14.5867C27.1006 14.0338 27.1006 11.3828 27.1006 11.3828C27.1006 6.28159 26.4404 6.83838 31.651 6.83838H36.2014C43.2437 6.98081 42.125 5.98355 42.125 11.0215V21.4604C41.7611 26.926 43.2437 25.9287 36.0398 25.9287C36.0398 25.9287 23.4752 25.9287 22.7387 25.9287Z" fill="#101010"/>
+                <path d="M44.7086 23.042C45.4254 23.042 53.3248 22.8484 54.6172 22.8104C55.9276 22.785 56.7174 22.6583 57.4175 22.5061C57.873 22.4072 58.0704 22.3047 58.2059 22.2006C58.3417 22.0962 58.4647 21.9677 58.5315 21.81C58.5812 21.6929 58.5937 21.5763 58.5937 21.3845L58.0151 15.0732C58.0151 15.0732 57.8223 9.69596 57.8223 8.5877C57.8223 7.47944 64 7.47944 64 8.5877C64 9.69596 64 21.4984 64 21.4984C64 25.9287 64 25.9287 57.9956 25.9287C57.9956 25.9287 45.2206 25.7801 44.7086 25.7801C44.1967 25.7801 43.9919 23.042 44.7086 23.042Z" fill="#101010"/>
+            </svg>
+        </a>
+
+        <button class="p-1 text-[#101010]">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13.7 21a2 2 0 01-3.4 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<div class="flex">
+
+    <!-- SIDEBAR -->
+    <aside class="w-[190px] shrink-0 border-l border-[#EDEDED] min-h-[calc(100vh-57px)] py-6 px-4 hidden md:block">
+        <nav class="space-y-5">
+            <button class="nav-item active flex items-center gap-2 w-full" data-section="add-product">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                افزودن محصولات
+            </button>
+            <button class="nav-item flex items-center gap-2 w-full" data-section="inventory">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="4" width="14" height="17" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M9 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/><path d="M8 10h8M8 14h8M8 18h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                موجودی
+            </button>
+            <button class="nav-item flex items-center gap-2 w-full" data-section="analytics">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20V10M10 20V4M16 20v-7M20 20H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                تحلیل ها
+            </button>
+            <button class="nav-item flex items-center gap-2 w-full" data-section="brand-page">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+                صفحه برند
+            </button>
+            <button class="nav-item flex items-center gap-2 w-full" data-section="messages">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                پیام‌ها
+            </button>
+            <button class="nav-item flex items-center gap-2 w-full" data-section="payments">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.5"/></svg>
+                پرداخت‌ها
+            </button>
+            <button class="nav-item flex items-center gap-2 w-full" data-section="settings">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="1.4"/><path d="M19.4 13a7.97 7.97 0 000-2l2-1.6-2-3.4-2.4.9a8 8 0 00-1.7-1L14.8 3h-4l-.4 2.9a8 8 0 00-1.7 1l-2.4-.9-2 3.4L6.3 11a8 8 0 000 2l-2 1.6 2 3.4 2.4-.9a8 8 0 001.7 1l.5 2.9h4l.4-2.9a8 8 0 001.7-1l2.4.9 2-3.4-2-1.6z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+                تنظیمات
+            </button>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="flex-1 px-6 md:px-10 py-8 min-w-0">
+
+        <!-- SECTION: add product -->
+        <section id="sec-add-product">
+            <h1 class="text-[18px] font-semibold mb-6">افزودن محصولات</h1>
+
+            <div id="addProductForm" class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <p class="text-[14px] font-medium mb-2">تا ۶ عکس می‌توانید آپلود کنید.</p>
+                    <p class="text-[13px] text-[#6B6B6B] mb-3 leading-6">برای اینکه مشتری‌ها انتخاب راحت‌تری داشته باشند، بهتر است این تصاویر را اضافه کنید:</p>
+                    <ul class="text-[13px] text-[#6B6B6B] list-disc pr-5 space-y-1 mb-6">
+                        <li>عکس از جلو</li>
+                        <li>عکس از راست و چپ</li>
+                        <li>عکس از پشت</li>
+                        <li>عکس نزدیک از پارچه برای تشخیص جنس</li>
+                        <li>عکس از نمای کلی محصول</li>
+                    </ul>
+                    <label id="productPhotoBox" class="upload-box w-[140px] h-[120px]">
+                        <input id="productPhotoInput" type="file" accept="image/*" multiple class="hidden" />
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 16V4M12 4L8 8M12 4L16 8" stroke="#8D8D8D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 16V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V16" stroke="#8D8D8D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>آپلود عکس</span>
+                    </label>
+                </div>
+
+                <div class="space-y-4">
+                    <input id="productName" type="text" class="wizard-input text-right" placeholder="نام محصول" />
+                    <input id="productPrice" type="text" class="wizard-input text-right" placeholder="قیمت محصول" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                    <input id="productColors" type="text" class="wizard-input text-right" placeholder="رنگ های این محصول" />
+                    <input id="productMaterial" type="text" class="wizard-input text-right" placeholder="جنس و متریال محصول" />
+                    <input id="productCare" type="text" class="wizard-input text-right" placeholder="راهنمای نگه داری محصول" />
+                    <button id="submitProductBtn" class="w-full h-[48px] bg-black text-white text-sm">ثبت محصول</button>
+                </div>
+            </div>
+
+            <div id="addProductPreview" class="hidden">
+                <p class="text-[13px] text-[#6B6B6B] mb-6">پیش‌نمایش کارت محصول شما در سایت:</p>
+
+                <article class="w-[260px] max-w-full">
+                    <div class="relative bg-[#F5F5F5] overflow-hidden aspect-[3/4]">
+                        <button class="absolute top-3 right-3 w-8 h-8 z-20">
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.50393 9.7941L9.32259 15.6547C9.42036 15.7532 9.57964 15.7532 9.67741 15.6547L15.4961 9.7941C17.0013 8.278 17.0013 5.81992 15.4961 4.30382C13.9908 2.78772 11.5503 2.78772 10.0451 4.30382L9.67741 4.67416C9.57964 4.77264 9.42036 4.77264 9.32259 4.67416L8.9549 4.30382C7.44966 2.78772 5.00918 2.78772 3.50393 4.30382C1.99869 5.81992 1.99869 8.27801 3.50393 9.7941Z" stroke="#101010"/>
+                            </svg>
+                        </button>
+                        <img id="previewImg" src="" alt="" class="w-full h-full object-cover hidden" />
+                        <button class="absolute top-1/2 -translate-y-1/2 left-2 w-[22px] h-[22px] flex items-center justify-center z-20">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.7502 18.26L7.77352 12.2833C7.06768 11.5775 7.06768 10.4225 7.77352 9.71666L13.7502 3.73999" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button class="absolute top-1/2 -translate-y-1/2 right-2 w-[22px] h-[22px] flex items-center justify-center z-20">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.16797 18.26L14.1446 12.2833C14.8505 11.5775 14.8505 10.4225 14.1446 9.71666L8.16797 3.73999" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button class="absolute bottom-2 left-2 right-2 h-[32px] bg-white text-[12px] flex items-center justify-center rounded-[1px] shadow border border-gray-200 z-20">افزودن به سبد خرید</button>
+                    </div>
+                    <div class="mt-4 text-right text-[13px] leading-6">
+                        <div id="previewName" class="font-medium">نام محصول</div>
+                        <div class="text-gray-600">برند راینا</div>
+                        <div id="previewPrice" class="text-gray-700 mt-1">۰ تومان</div>
+                        <div class="mt-3 flex justify-end gap-1" dir="ltr">
+                            <span class="w-3 h-3 rounded-full bg-[#C6A27D] border border-gray-300"></span>
+                            <span class="w-3 h-3 rounded-full bg-[#164B6F] border border-gray-300"></span>
+                            <span class="w-3 h-3 rounded-full bg-black border border-gray-300"></span>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="flex items-center gap-3 mt-8">
+                    <button id="addAnotherProductBtn" class="h-[44px] px-6 bg-black text-white text-sm">افزودن محصول دیگر</button>
+                    <button id="editProductBtn" class="h-[44px] px-6 border border-[#101010] text-sm">ویرایش محصول</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: inventory -->
+        <section id="sec-inventory" class="hidden">
+            <h1 class="text-[18px] font-semibold mb-6">موجودی محصولات</h1>
+            <div class="overflow-x-auto">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>نام محصول</th>
+                        <th>کد محصول</th>
+                        <th>تعداد کل</th>
+                        <th>تعداد فروش رفته</th>
+                        <th>تعداد باقیمانده</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>روسری کشمیر سرخابی</td>
+                        <td>۱۲۸۴۸۹۴</td>
+                        <td>۱۴۰</td>
+                        <td>۳۸</td>
+                        <td>۱۰۲</td>
+                    </tr>
+                    <tr>
+                        <td>روسری ابریشم طرح گل</td>
+                        <td>۳۸۹۹۲۷۴</td>
+                        <td>۵۰</td>
+                        <td>۲۴</td>
+                        <td>۲۶</td>
+                    </tr>
+                    <tr>
+                        <td>شال پشمی بنفش</td>
+                        <td>۸۳۰۰۴۱۷</td>
+                        <td>۲۴۰</td>
+                        <td>۸۷</td>
+                        <td>۱۵۳</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION: analytics -->
+        <section id="sec-analytics" class="hidden">
+            <h1 class="text-[18px] font-semibold mb-6">تحلیل ها</h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="stat-card">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mb-3" xmlns="http://www.w3.org/2000/svg"><path d="M4 20V10M10 20V4M16 20v-7M20 20H4" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <p class="text-[12px] text-[#6B6B6B] mb-1">پرفروش‌ترین محصول</p>
+                    <p class="text-[14px] font-medium mb-1">شال کشمیر طرح رز</p>
+                    <p class="text-[11px] text-[#9CA3AF]">ماه گذشته</p>
+                </div>
+                <div class="stat-card">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" class="mb-3" xmlns="http://www.w3.org/2000/svg"><path d="M5 5.11334V4.46667C5 2.96667 6.20667 1.49334 7.70667 1.35334C9.49333 1.18001 11 2.58667 11 4.34001V5.26001" stroke="#9CA3AF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.99988 14.6666H9.99988C12.6799 14.6666 13.1599 13.5933 13.2999 12.2866L13.7999 8.28659C13.9799 6.65992 13.5132 5.33325 10.6666 5.33325H5.33322C2.48655 5.33325 2.01988 6.65992 2.19988 8.28659L2.69988 12.2866C2.83988 13.5933 3.31988 14.6666 5.99988 14.6666Z" stroke="#9CA3AF" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <p class="text-[12px] text-[#6B6B6B] mb-1">تعداد کل سفارش‌ها</p>
+                    <p class="text-[14px] font-medium mb-1">۲۹۳ عدد</p>
+                    <p class="text-[11px] text-[#9CA3AF]">ماه گذشته</p>
+                </div>
+                <div class="stat-card">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="mb-3" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="20" height="14" rx="2" stroke="#9CA3AF" stroke-width="1.5"/><path d="M2 10h20" stroke="#9CA3AF" stroke-width="1.5"/></svg>
+                    <p class="text-[12px] text-[#6B6B6B] mb-1">مجموع فروش این ماه</p>
+                    <p class="text-[14px] font-medium mb-1">۲۰,۸۰۰,۰۰۰ تومان</p>
+                    <p class="text-[11px] text-[#9CA3AF]">ماه گذشته</p>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto mb-10">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>نام محصول</th>
+                        <th>تعداد فروش در یک ماه</th>
+                        <th>مجموع مبلغ فروش در یک ماه</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>روسری کشمیر سرخابی</td>
+                        <td>۱۴۰</td>
+                        <td>۱,۲۸۴,۸۹۴ تومان</td>
+                    </tr>
+                    <tr>
+                        <td>روسری ابریشم طرح گل</td>
+                        <td>۵۰</td>
+                        <td>۸۹۹,۲۷۴ تومان</td>
+                    </tr>
+                    <tr>
+                        <td>شال پشمی بنفش</td>
+                        <td>۲۴۰</td>
+                        <td>۳۰۰,۴۱۷ تومان</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex items-center justify-between mb-4">
+                <p class="text-[14px] font-medium">فروش روزانه محصولات - شهریور ماه</p>
+                <select class="text-[13px] border border-[#D9D9D9] px-3 py-1 outline-none">
+                    <option>شهریور</option>
+                    <option>مهر</option>
+                    <option>آبان</option>
+                </select>
+            </div>
+
+            <div class="overflow-x-auto">
+                <svg id="salesChart" width="100%" height="220" viewBox="0 0 920 220" preserveAspectRatio="none"></svg>
+            </div>
+        </section>
+
+        <!-- SECTION: brand page -->
+        <section id="sec-brand-page" class="hidden">
+            <h1 class="text-[18px] font-semibold mb-6">صفحه برند شما</h1>
+            <div id="brandPageGrid" class="grid grid-cols-2 md:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- SECTION: messages -->
+        <section id="sec-messages" class="hidden">
+            <h1 class="text-[18px] font-semibold mb-6">پیام های ارسال شده برای شما</h1>
+            <div id="messagesList" class="space-y-2"></div>
+        </section>
+
+        <!-- SECTION: payments -->
+        <section id="sec-payments" class="hidden">
+            <h1 class="text-[18px] font-semibold mb-6">پرداخت‌ها</h1>
+            <div class="overflow-x-auto">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>نام محصول</th>
+                        <th>شماره سفارش</th>
+                        <th>تاریخ</th>
+                        <th>مبلغ کل</th>
+                        <th>مبلغ دریافتی شما</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>روسری کشمیر سرخابی</td>
+                        <td>۱۲۸۴۸۹۴</td>
+                        <td>۱۴۰۴/۰۱/۲۸</td>
+                        <td>۲,۴۵۰,۰۰۰ تومان</td>
+                        <td>۲,۲۰۵,۰۰۰ تومان</td>
+                    </tr>
+                    <tr>
+                        <td>روسری ابریشم طرح گل</td>
+                        <td>۳۸۹۹۲۷۴</td>
+                        <td>۱۴۰۴/۰۲/۱۷</td>
+                        <td>۸۹۰,۰۰۰ تومان</td>
+                        <td>۸۰۱,۰۰۰ تومان</td>
+                    </tr>
+                    <tr>
+                        <td>شال پشمی بنفش</td>
+                        <td>۸۳۰۰۴۱۷</td>
+                        <td>۱۴۰۴/۰۳/۲۴</td>
+                        <td>۱,۷۰۰,۰۰۰ تومان</td>
+                        <td>۱,۵۳۰,۰۰۰ تومان</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION: settings -->
+        <section id="sec-settings" class="hidden">
+            <h1 class="text-[18px] font-semibold mb-6">تنظیمات</h1>
+
+            <div class="flex items-center gap-8 border-b border-[#EDEDED] mb-8">
+                <button class="settings-tab active" data-tab="brand">تنظیمات برند</button>
+                <button class="settings-tab" data-tab="financial">اطلاعات مالی</button>
+            </div>
+
+            <!-- tab: brand -->
+            <div id="tab-brand" class="flex flex-col md:flex-row gap-10">
+                <label class="upload-box w-[80px] h-[80px] flex-shrink-0" style="border-style:solid;">
+                    <input id="settingsLogoInput" type="file" accept="image/*" class="hidden" />
+                    <span id="settingsLogoPreview" class="w-full h-full flex items-center justify-center bg-[#7C9473] text-white text-[22px] font-semibold">R</span>
+                </label>
+
+                <div class="flex-1 max-w-[420px] space-y-4">
+                    <div class="settings-field">
+                        <label>نام برند</label>
+                        <input id="settingsBrandName" type="text" value="راینا" readonly />
+                    </div>
+                    <div class="settings-field">
+                        <label>معرفی برند</label>
+                        <textarea id="settingsBrandDesc" readonly>در راینا کیفیت، ظرافت و توجه به جزئیات در اولویت است. هر محصول با دقت انتخاب شده تا تجربه‌ای خاص و متفاوت برای شما خلق کند.</textarea>
+                    </div>
+                    <div class="settings-field">
+                        <label>اطلاعات ورود</label>
+                        <input id="settingsPhone" type="tel" value="۰۹۹۰۱۲۳۷۶۱۹" readonly inputmode="numeric" />
+                    </div>
+                    <div class="settings-field">
+                        <label>لینک اینستاگرام</label>
+                        <input id="settingsInstagram" type="text" value="https://www.instagram.com/fatemeh.design" readonly />
+                    </div>
+                    <div class="settings-field">
+                        <label>رمز عبور</label>
+                        <input id="settingsPassword" type="text" value="Raynaadesigner" readonly />
+                    </div>
+                    <button id="editBrandSettingsBtn" class="h-[44px] px-6 bg-black text-white text-sm">ویرایش اطلاعات</button>
+                </div>
+            </div>
+
+            <!-- tab: financial -->
+            <div id="tab-financial" class="hidden max-w-[420px] space-y-4">
+                <div class="settings-field">
+                    <label>نام صاحب حساب</label>
+                    <input id="settingsAccountName" type="text" value="راینا مرادیان" readonly />
+                </div>
+                <div class="settings-field">
+                    <label>شماره شبا</label>
+                    <input id="settingsIban" type="text" value="IR82 1234 5678 9012 3456 7890 123" readonly dir="ltr" />
+                </div>
+                <div class="settings-field">
+                    <label>شماره کارت بانکی</label>
+                    <input id="settingsCard" type="text" value="6037 1234 5678 9012" readonly dir="ltr" />
+                </div>
+                <button id="editFinancialSettingsBtn" class="h-[44px] px-6 bg-black text-white text-sm">ویرایش اطلاعات</button>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+    /* ---------- sidebar navigation ---------- */
+    const sections = ['add-product', 'inventory', 'analytics', 'brand-page', 'messages', 'payments', 'settings'];
+    document.querySelectorAll('.nav-item').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.section;
+            sections.forEach((s) => {
+                document.getElementById(`sec-${s}`).classList.toggle('hidden', s !== target);
+            });
+            document.querySelectorAll('.nav-item').forEach((b) => b.classList.toggle('active', b === btn));
+        });
+    });
+
+    /* ---------- top bar / settings avatar upload ---------- */
+    function readImageAsDataUrl(file, callback) {
+        const reader = new FileReader();
+        reader.onload = (e) => callback(e.target.result);
+        reader.readAsDataURL(file);
+    }
+
+    document.getElementById('topAvatarInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        readImageAsDataUrl(file, (url) => {
+            document.getElementById('topAvatar').innerHTML = `<input type="file" accept="image/*" class="hidden" /><img src="${url}" alt="" />`;
+        });
+    });
+
+    document.getElementById('settingsLogoInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        readImageAsDataUrl(file, (url) => {
+            document.getElementById('settingsLogoPreview').outerHTML = `<img id="settingsLogoPreview" src="${url}" alt="" class="w-full h-full object-cover" />`;
+        });
+    });
+
+    /* ---------- add product ---------- */
+    const productPhotoInput = document.getElementById('productPhotoInput');
+    const previewImg = document.getElementById('previewImg');
+    let firstProductImageUrl = '';
+    productPhotoInput.addEventListener('change', () => {
+        const file = productPhotoInput.files[0];
+        if (!file) return;
+        readImageAsDataUrl(file, (url) => { firstProductImageUrl = url; });
+    });
+
+    document.getElementById('submitProductBtn').addEventListener('click', () => {
+        const name = document.getElementById('productName').value.trim();
+        const price = document.getElementById('productPrice').value.trim();
+        if (!name || !price) return;
+
+        document.getElementById('previewName').textContent = name;
+        document.getElementById('previewPrice').textContent = `${Number(price).toLocaleString('fa-IR')} تومان`;
+
+        if (firstProductImageUrl) {
+            previewImg.src = firstProductImageUrl;
+            previewImg.classList.remove('hidden');
+        }
+
+        document.getElementById('addProductForm').classList.add('hidden');
+        document.getElementById('addProductPreview').classList.remove('hidden');
+    });
+
+    document.getElementById('editProductBtn').addEventListener('click', () => {
+        document.getElementById('addProductPreview').classList.add('hidden');
+        document.getElementById('addProductForm').classList.remove('hidden');
+    });
+
+    document.getElementById('addAnotherProductBtn').addEventListener('click', () => {
+        document.getElementById('productName').value = '';
+        document.getElementById('productPrice').value = '';
+        document.getElementById('productColors').value = '';
+        document.getElementById('productMaterial').value = '';
+        document.getElementById('productCare').value = '';
+        previewImg.classList.add('hidden');
+        firstProductImageUrl = '';
+        document.getElementById('addProductPreview').classList.add('hidden');
+        document.getElementById('addProductForm').classList.remove('hidden');
+    });
+
+    /* ---------- brand page grid ---------- */
+    const brandProducts = [
+        { name: 'روسری ابریشم', brand: 'برند فیلی', price: '۱,۵۰۰,۰۰۰ تومان', img: '../../app/clothes/1.jpeg' },
+        { name: 'عبایه اماراتی پلیسه ساده', brand: 'برند ویل', price: '۶,۳۳۰,۰۰۰ تومان', img: '../../app/clothes/3.jpeg' },
+        { name: 'شال نخی', brand: 'برند فیلی', price: '۱,۵۰۰,۰۰۰ تومان', img: '../../app/clothes/6.jpeg' },
+        { name: 'روسری ابریشم', brand: 'برند فیلی', price: '۱,۵۰۰,۰۰۰ تومان', img: '../../app/clothes/2.jpeg' },
+        { name: 'عبایه صورتی کرپ', brand: 'برند ویل', price: '۷,۵۰۰,۰۰۰ تومان', img: '../../app/clothes/4.jpeg' },
+        { name: 'شال نخی', brand: 'برند فیلی', price: '۱,۵۰۰,۰۰۰ تومان', img: '../../app/clothes/7.jpeg' },
+    ];
+
+    const brandPageGrid = document.getElementById('brandPageGrid');
+    brandPageGrid.innerHTML = brandProducts.map((p) => `
+        <article class="w-full">
+            <div class="relative bg-[#F5F5F5] overflow-hidden aspect-[3/4]">
+                <button class="absolute top-3 right-3 w-8 h-8 z-20">
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.50393 9.7941L9.32259 15.6547C9.42036 15.7532 9.57964 15.7532 9.67741 15.6547L15.4961 9.7941C17.0013 8.278 17.0013 5.81992 15.4961 4.30382C13.9908 2.78772 11.5503 2.78772 10.0451 4.30382L9.67741 4.67416C9.57964 4.77264 9.42036 4.77264 9.32259 4.67416L8.9549 4.30382C7.44966 2.78772 5.00918 2.78772 3.50393 4.30382C1.99869 5.81992 1.99869 8.27801 3.50393 9.7941Z" stroke="#101010"/>
+                    </svg>
+                </button>
+                <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover" />
+                <button class="absolute top-1/2 -translate-y-1/2 left-2 w-[22px] h-[22px] flex items-center justify-center z-20">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.7502 18.26L7.77352 12.2833C7.06768 11.5775 7.06768 10.4225 7.77352 9.71666L13.7502 3.73999" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="absolute top-1/2 -translate-y-1/2 right-2 w-[22px] h-[22px] flex items-center justify-center z-20">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.16797 18.26L14.1446 12.2833C14.8505 11.5775 14.8505 10.4225 14.1446 9.71666L8.16797 3.73999" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="absolute bottom-2 left-2 right-2 h-[32px] bg-white text-[12px] flex items-center justify-center rounded-[1px] shadow border border-gray-200 z-20">افزودن به سبد خرید</button>
+            </div>
+            <div class="mt-3 text-right text-[13px] leading-6">
+                <div class="font-medium">${p.name}</div>
+                <div class="text-gray-600">${p.brand}</div>
+                <div class="text-gray-700 mt-1">${p.price}</div>
+                <div class="text-xs text-gray-500">ناموجود</div>
+                <div class="mt-2 flex justify-end gap-1" dir="ltr">
+                    <span class="w-3 h-3 rounded-full bg-[#C6A27D] border border-gray-300"></span>
+                    <span class="w-3 h-3 rounded-full bg-[#164B6F] border border-gray-300"></span>
+                    <span class="w-3 h-3 rounded-full bg-black border border-gray-300"></span>
+                </div>
+            </div>
+        </article>
+    `).join('');
+
+    /* ---------- messages ---------- */
+    const messages = [
+        { name: 'پالتو سالومه', code: '۱۲۹۹۲۰۳', count: '۲۱', img: '../../app/clothes/8.jpeg' },
+        { name: 'شال کشمیر', code: '۳۲۸۴۱۸۵', count: '۲۹', img: '../../app/clothes/5.jpeg' },
+        { name: 'شال گردن پشمی', code: '۵۲۸۴۶۹۱', count: '۵', img: '../../app/clothes/9.png' },
+        { name: 'شال کشمیر', code: '۳۲۸۴۱۸۵', count: '۲۹', img: '../../app/clothes/5.jpeg' },
+    ];
+
+    const messagesList = document.getElementById('messagesList');
+    messagesList.innerHTML = messages.map((m, i) => `
+        <div class="border border-[#EDEDED]">
+            <button class="message-toggle w-full flex items-center justify-between px-4 py-3" data-index="${i}">
+                <div class="flex items-center gap-2 text-[13px] text-[#6B6B6B]">
+                    <svg class="chevron-${i} transition-transform" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>${m.count} کل کامنت ها</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right text-[13px]">
+                        <div class="font-medium">${m.name}</div>
+                        <div class="text-[#9CA3AF] text-[12px]">${m.code}</div>
+                    </div>
+                    <img src="${m.img}" alt="${m.name}" class="w-10 h-10 object-cover" />
+                </div>
+            </button>
+            <div class="message-body-${i} hidden px-4 pb-4 text-[13px] text-[#6B6B6B] border-t border-[#EDEDED] pt-3">
+                هنوز کامنتی برای نمایش وجود ندارد.
+            </div>
+        </div>
+    `).join('');
+
+    document.querySelectorAll('.message-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const i = btn.dataset.index;
+            document.querySelector(`.message-body-${i}`).classList.toggle('hidden');
+            document.querySelector(`.chevron-${i}`).classList.toggle('rotate-180');
+        });
+    });
+
+    /* ---------- analytics chart (static demo data) ---------- */
+    const chartData = [80, 70, 90, 75, 65, 85, 100, 110, 105, 95, 115, 130, 120, 140, 150, 145, 160, 155, 170, 165, 180, 175, 190, 185, 195, 170, 160, 175, 150, 140];
+    const chartW = 920, chartH = 220, padX = 30, padY = 20;
+    const maxVal = 200;
+    const stepX = (chartW - padX * 2) / (chartData.length - 1);
+
+    function chartPoint(i, v) {
+        const x = padX + i * stepX;
+        const y = chartH - padY - (v / maxVal) * (chartH - padY * 2);
+        return [x, y];
+    }
+
+    const points = chartData.map((v, i) => chartPoint(i, v).join(',')).join(' ');
+
+    const gridLines = [40, 80, 120, 160, 200].map((v) => {
+        const y = chartH - padY - (v / maxVal) * (chartH - padY * 2);
+        return `<line x1="${padX}" y1="${y}" x2="${chartW - padX}" y2="${y}" stroke="#F0F0F0" stroke-width="1" />
+                <text x="${chartW - padX + 6}" y="${y + 4}" font-size="10" fill="#9CA3AF">${v.toLocaleString('fa-IR')}</text>`;
+    }).join('');
+
+    const dayLabels = chartData.map((_, i) => {
+        const x = padX + i * stepX;
+        return `<text x="${x}" y="${chartH - 2}" font-size="9" fill="#9CA3AF" text-anchor="middle">${(i + 1).toLocaleString('fa-IR')}</text>`;
+    }).join('');
+
+    document.getElementById('salesChart').innerHTML = `
+        ${gridLines}
+        <polyline points="${points}" fill="none" stroke="#4CAF50" stroke-width="2" />
+        ${dayLabels}
+    `;
+
+    /* ---------- settings tabs ---------- */
+    document.querySelectorAll('.settings-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.settings-tab').forEach((t) => t.classList.toggle('active', t === tab));
+            document.getElementById('tab-brand').classList.toggle('hidden', tab.dataset.tab !== 'brand');
+            document.getElementById('tab-financial').classList.toggle('hidden', tab.dataset.tab !== 'financial');
+        });
+    });
+
+    function wireSettingsEdit(buttonId, fieldIds) {
+        const btn = document.getElementById(buttonId);
+        let editing = false;
+        btn.addEventListener('click', () => {
+            editing = !editing;
+            fieldIds.forEach((id) => {
+                const field = document.getElementById(id);
+                field.readOnly = !editing;
+                field.classList.toggle('editing', editing);
+            });
+            btn.textContent = editing ? 'ثبت' : 'ویرایش اطلاعات';
+        });
+    }
+
+    wireSettingsEdit('editBrandSettingsBtn', ['settingsBrandName', 'settingsBrandDesc', 'settingsPhone', 'settingsInstagram', 'settingsPassword']);
+    wireSettingsEdit('editFinancialSettingsBtn', ['settingsAccountName', 'settingsIban', 'settingsCard']);
+</script>
+
+</body>
+</html>

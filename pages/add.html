@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>افزودن محصول | فروشگاه اینترنتی روز</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../public/src/css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../app/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../app/favicon.png">
+
+    <style>
+        .container {
+            max-width: 1600px;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #6C717A;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F6F6F8] text-[#101010]">
+
+<!-- ================= HEADER ================= -->
+<header class="w-full bg-[#F7F7F8] border-b border-[#EDEDED]" dir="ltr">
+    <div class="flex items-center justify-between h-[68px]">
+
+        <!-- LEFT EMPTY / BELL AREA -->
+        <div class="flex-1 px-8">
+            <button class="p-1">
+                <i class="fa-regular fa-bell text-[16px]"></i>
+            </button>
+        </div>
+
+        <!-- RIGHT AREA: LOGO + SIDEBAR PROFILE WIDTH -->
+        <div class="flex items-center">
+
+            <!-- LOGO -->
+            <a href="/" class="flex items-center mr-[150px]">
+                <svg width="64" height="26" viewBox="0 0 64 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.740634 22.9342C1.72817 22.9314 9.33883 22.7594 10.6492 22.7213C11.8713 22.698 12.6993 22.517 13.3132 22.3698C13.4168 22.3449 13.5187 22.3129 13.6147 22.2666C13.7598 22.1967 13.8722 22.1268 13.9623 22.0569C14.1197 21.9347 14.2251 21.7527 14.2355 21.5536C14.24 21.467 14.24 21.3567 14.24 21.1994L14.0471 14.9114C14.0471 14.9114 13.8543 9.47395 13.8543 8.43827C13.8543 7.40259 20.0729 7.63142 20.0729 8.5747C20.0729 9.51798 20.0729 21.4854 20.0729 21.4854C20.0729 25.9157 20.015 25.9287 14.1762 25.9157C14.1762 25.9157 1.72812 25.8243 0.740634 25.8243C-0.246857 25.8243 -0.246898 22.9369 0.740634 22.9342ZM14.054 0.832942C15.589 -0.277647 18.4903 -0.277647 20.0254 0.832942C21.5237 1.91696 21.5237 4.11804 20.0254 5.20206C18.4903 6.31265 15.2145 6.31497 13.8954 5.02369C12.7384 3.891 12.5557 1.91696 14.054 0.832942Z" fill="#101010"/>
+                    <path d="M22.7387 25.9287C22.0022 25.9287 22.0022 23.1942 22.7387 23.1942C23.4752 23.1942 31.3189 22.8484 32.6472 22.8104C33.9755 22.785 34.9808 22.7723 35.6629 22.6583C36.345 22.5442 36.5963 22.3033 36.7399 22.0498C36.9014 21.809 36.9553 21.6188 36.9553 21.1371L36.8604 19.6621C36.7926 18.6096 35.9192 17.7906 34.8645 17.7906H29.1006C27.996 17.7906 27.1006 16.8949 27.1006 15.7903C27.1006 15.2641 27.1006 14.7873 27.1006 14.5867C27.1006 14.0338 27.1006 11.3828 27.1006 11.3828C27.1006 6.28159 26.4404 6.83838 31.651 6.83838H36.2014C43.2437 6.98081 42.125 5.98355 42.125 11.0215V21.4604C41.7611 26.926 43.2437 25.9287 36.0398 25.9287C36.0398 25.9287 23.4752 25.9287 22.7387 25.9287Z" fill="#101010"/>
+                    <path d="M44.7086 23.042C45.4254 23.042 53.3248 22.8484 54.6172 22.8104C55.9276 22.785 56.7174 22.6583 57.4175 22.5061C57.873 22.4072 58.0704 22.3047 58.2059 22.2006C58.3417 22.0962 58.4647 21.9677 58.5315 21.81C58.5812 21.6929 58.5937 21.5763 58.5937 21.3845L58.0151 15.0732C58.0151 15.0732 57.8223 9.69596 57.8223 8.5877C57.8223 7.47944 64 7.47944 64 8.5877C64 9.69596 64 21.4984 64 21.4984C64 25.9287 64 25.9287 57.9956 25.9287C57.9956 25.9287 45.2206 25.7801 44.7086 25.7801C44.1967 25.7801 43.9919 23.042 44.7086 23.042Z" fill="#101010"/>
+                </svg>
+            </a>
+
+            <!-- PROFILE AREA SAME AS SIDEBAR WIDTH -->
+            <div class="w-[287px] h-[68px] flex items-center justify-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-[#8A9857] flex items-center justify-center text-black text-[20px] font-semibold">
+                        R
+                    </div>
+                    <span class="text-[14px] text-[#101010]">راینا برند</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+<!-- ================= PAGE ================= -->
+<main class="w-full bg-white">
+    <div class="container mx-auto px-4 md:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 min-h-[620px]">
+
+            <!-- SIDEBAR -->
+            <aside class="w-[287px] min-w-[287px] bg-[#F7F7F8] border-l border-[#EDEDED] pt-8 hidden lg:block">
+                <nav class="space-y-6 text-[14px] text-[#101010] px-8">
+
+                    <a href="#" class="flex items-center justify-between hover:text-black">
+                        <span>داشبورد</span>
+                        <img src="../app/assets/icons/home-2.png" alt="داشبورد" class="w-[16px] h-[16px] object-contain">
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between font-semibold">
+                        <span>افزودن محصولات</span>
+                        <img src="../app/assets/icons/shop-add.png" alt="افزودن محصولات" class="w-[16px] h-[16px] object-contain">
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between hover:text-black">
+                        <span>موجودی</span>
+                        <img src="../app/assets/icons/document-normal.png" alt="موجودی" class="w-[16px] h-[16px] object-contain">
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between hover:text-black">
+                        <span>تحلیل‌ها</span>
+                        <img src="../app/assets/icons/chart.png" alt="تحلیل‌ها" class="w-[16px] h-[16px] object-contain">
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between hover:text-black">
+                        <span>صفحه برند</span>
+                        <img src="../app/assets/icons/shop.png" alt="صفحه برند" class="w-[16px] h-[16px] object-contain">
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between hover:text-black">
+                        <span>پیام‌ها</span>
+                        <img src="../app/assets/icons/messages.png" alt="پیام‌ها" class="w-[16px] h-[16px] object-contain">
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between hover:text-black">
+                        <span>پرداخت‌ها</span>
+                        <img src="../app/assets/icons/card.png" alt="پرداخت‌ها" class="w-[16px] h-[16px] object-contain">
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between hover:text-black">
+                        <span>تنظیمات</span>
+                        <img src="../app/assets/icons/setting-2" alt="تنظیمات" class="w-[16px] h-[16px] object-contain">
+                    </a>
+
+                </nav>
+            </aside>
+
+            <!-- CONTENT -->
+            <section class="pt-10 pb-16">
+
+                <div class="max-w-[880px] mr-auto">
+
+                    <div class="mb-10">
+                        <h1 class="text-xl md:text-2xl font-semibold mb-3">
+                            افزودن محصول
+                        </h1>
+                        <p class="text-sm text-gray-600 leading-7">
+                            اطلاعات محصول خود را وارد کنید و تصاویر مناسب برای نمایش بهتر محصول را بارگذاری کنید.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-10 items-start">
+
+                        <!-- FORM -->
+                        <form class="space-y-4">
+
+                            <input
+                                    type="text"
+                                    placeholder="نام محصول"
+                                    class="w-full h-[42px] border border-[#DADADA] bg-white px-4 text-[13px] outline-none text-right focus:border-black transition"
+                            />
+
+                            <input
+                                    type="text"
+                                    placeholder="قیمت محصول"
+                                    class="w-full h-[42px] border border-[#DADADA] bg-white px-4 text-[13px] outline-none text-right focus:border-black transition"
+                            />
+
+                            <input
+                                    type="text"
+                                    placeholder="رنگ‌های این محصول"
+                                    class="w-full h-[42px] border border-[#DADADA] bg-white px-4 text-[13px] outline-none text-right focus:border-black transition"
+                            />
+
+                            <input
+                                    type="text"
+                                    placeholder="جنس و متریال محصول"
+                                    class="w-full h-[42px] border border-[#DADADA] bg-white px-4 text-[13px] outline-none text-right focus:border-black transition"
+                            />
+
+                            <textarea
+                                    placeholder="راهنمای نگه‌داری محصول"
+                                    rows="4"
+                                    class="w-full border border-[#DADADA] bg-white px-4 py-3 text-[13px] outline-none text-right resize-none focus:border-black transition"
+                            ></textarea>
+
+                            <div class="pt-3 flex justify-start">
+                                <button
+                                        type="button"
+                                        class="w-[130px] h-[40px] bg-black text-white text-[13px] hover:bg-gray-900 transition"
+                                >
+                                    ثبت محصول
+                                </button>
+                            </div>
+
+                        </form>
+
+                        <!-- UPLOAD BOX -->
+                        <div class="text-right">
+
+                            <h2 class="text-[14px] font-semibold mb-3">
+                                تا ۶ عکس می‌توانید آپلود کنید.
+                            </h2>
+
+                            <p class="text-[12px] text-gray-600 leading-7 mb-4">
+                                برای اینکه مشتری‌ها انتخاب راحت‌تری داشته باشند، بهتر است این تصاویر را اضافه کنید:
+                            </p>
+
+                            <ul class="text-[12px] text-[#101010] leading-7 list-disc pr-5 mb-5">
+                                <li>عکس از جلو</li>
+                                <li>عکس از راست و چپ</li>
+                                <li>عکس از پشت</li>
+                                <li>عکس نزدیک از پارچه برای تشخیص جنس</li>
+                                <li>عکس از نمای کلی محصول</li>
+                            </ul>
+
+                            <label class="w-full h-[150px] border border-dashed border-[#CFCFCF] flex flex-col items-center justify-center cursor-pointer hover:border-black transition">
+                                <i class="fa-solid fa-arrow-up-from-bracket text-[18px] mb-3"></i>
+                                <span class="text-[13px]">آپلود عکس</span>
+                                <span class="text-[11px] text-gray-500 mt-2">PNG, JPG, JPEG</span>
+                                <input type="file" multiple class="hidden" />
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="w-full bg-white pt-12 pb-6 border-t" dir="rtl">
+    <div class="container mx-auto px-4 md:px-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 items-start text-center md:text-right">
+
+            <div class="text-sm leading-7">
+                <h4 class="font-semibold mb-2">با روز</h4>
+                <ul class="space-y-1 text-gray-700">
+                    <li><a href="#" class="hover:text-black">مجله روز</a></li>
+                    <li><a href="#" class="hover:text-black">درباره روز</a></li>
+                    <li><a href="#" class="hover:text-black">ثبت نام فروشندگان</a></li>
+                    <li><a href="#" class="hover:text-black">قوانین سایت</a></li>
+                    <li><a href="#" class="hover:text-black">پشتیبانی</a></li>
+                    <li><a href="#" class="hover:text-black">ثبت شکایات</a></li>
+                </ul>
+            </div>
+
+            <div class="text-sm leading-7">
+                <h4 class="font-semibold mb-2">خدمات مشتریان</h4>
+                <ul class="space-y-1 text-gray-700">
+                    <li><a href="#" class="hover:text-black">سوالات متداول</a></li>
+                    <li><a href="#" class="hover:text-black">پیگیری سفارش</a></li>
+                    <li><a href="#" class="hover:text-black">روش ثبت سفارش</a></li>
+                    <li><a href="#" class="hover:text-black">رویه ارسال سفارش</a></li>
+                    <li><a href="#" class="hover:text-black">حریم خصوصی</a></li>
+                </ul>
+            </div>
+
+            <div class="text-sm leading-7">
+                <h4 class="font-semibold mb-2">برندها</h4>
+                <ul class="space-y-1 text-gray-700">
+                    <li><a href="#" class="hover:text-black">ویل</a></li>
+                    <li><a href="#" class="hover:text-black">فیلی</a></li>
+                    <li><a href="#" class="hover:text-black">نایکی</a></li>
+                    <li><a href="#" class="hover:text-black">آر</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-2 flex flex-col items-center md:items-end text-center md:text-right">
+
+                <form class="flex w-full max-w-lg border border-black h-10 overflow-hidden">
+                    <input
+                            type="email"
+                            placeholder="ایمیل شما"
+                            class="flex-1 px-3 text-sm outline-none text-right"
+                    />
+                    <button
+                            type="submit"
+                            class="w-[120px] bg-black text-white text-sm flex items-center justify-center"
+                    >
+                        ثبت
+                    </button>
+                </form>
+
+                <p class="mt-4 text-xs md:text-sm text-gray-600 leading-6 max-w-lg">
+                    با ثبت‌نام، شما موافقت می‌کنید که ایمیل‌هایی درباره تازه‌ترین کالکشن‌ها،
+                    همکاری‌های جدید برندها و پیشنهادهای ویژه فشن روز دریافت کنید. شما بر اساس قوانین
+                    حریم خصوصی از حقوق مشخصی برخوردارید و می‌توانید در هر زمان اشتراک خود را لغو کنید.
+                </p>
+            </div>
+
+        </div>
+
+        <div
+                class="border-t mt-10 pt-4 flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 text-xs text-black"
+                dir="ltr"
+        >
+            <div class="flex items-center gap-5 text-lg justify-center md:justify-start">
+                <a href="#" class="hover:text-black"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="hover:text-black"><i class="fab fa-youtube"></i></a>
+            </div>
+
+            <div class="text-[11px] md:text-xs text-center md:text-right" dir="rtl">
+                کلیه حقوق این سایت محفوظ و متعلق به سایت روز می‌باشد.
+                <span class="text-gray-500">(نسخه 1.0.0)</span>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>

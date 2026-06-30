@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پنل فروشنده | روز</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../public/src/css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../app/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../app/favicon.png">
+
+    <style>
+        @font-face {
+            font-family: 'IRANSansX';
+            src: url('../../public/fonts/A-Iranian-Sans/IRANSansX-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'IRANSansX';
+            src: url('../../public/fonts/A-Iranian-Sans/IRANSansX-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'IRANSansX';
+            src: url('../../public/fonts/A-Iranian-Sans/IRANSansX-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        html, body {
+            font-family: 'IRANSansX', sans-serif;
+        }
+
+        .container-custom { max-width: 1600px; }
+
+        .wizard-input {
+            height: 54px;
+            border: 1px solid #D9D9D9;
+            padding: 0 16px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            background: white;
+        }
+        .wizard-input::placeholder { color: #8D8D8D; }
+
+        .wizard-textarea {
+            min-height: 96px;
+            border: 1px solid #D9D9D9;
+            padding: 14px 16px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            background: white;
+            resize: none;
+            font-family: 'IRANSansX', sans-serif;
+        }
+        .wizard-textarea::placeholder { color: #8D8D8D; }
+
+        .upload-box {
+            border: 1px dashed #D9D9D9;
+            width: 100%;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #8D8D8D;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            overflow: hidden;
+        }
+        .upload-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .step-circle {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+        .step-circle.on { background: #101010; color: #ffffff; }
+        .step-circle.off { border: 1px solid #D9D9D9; color: #9CA3AF; background: transparent; }
+
+        .step-label.on { color: #101010; font-weight: 500; }
+        .step-label.off { color: #9CA3AF; font-weight: 400; }
+
+        .step-line { flex: 1; height: 1px; background: #D9D9D9; min-width: 20px; }
+    </style>
+</head>
+<body class="bg-white text-[#101010] min-h-screen flex flex-col">
+
+<!-- HEADER -->
+<header class="w-full bg-white border-b border-[#EDEDED]" dir="ltr">
+    <div class="container-custom mx-auto px-6 py-5">
+        <div class="flex items-center justify-end">
+            <a href="/" aria-label="Rooz Home">
+                <svg width="64" height="26" viewBox="0 0 64 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.740634 22.9342C1.72817 22.9314 9.33883 22.7594 10.6492 22.7213C11.8713 22.698 12.6993 22.517 13.3132 22.3698C13.4168 22.3449 13.5187 22.3129 13.6147 22.2666C13.7598 22.1967 13.8722 22.1268 13.9623 22.0569C14.1197 21.9347 14.2251 21.7527 14.2355 21.5536C14.24 21.467 14.24 21.3567 14.24 21.1994L14.0471 14.9114C14.0471 14.9114 13.8543 9.47395 13.8543 8.43827C13.8543 7.40259 20.0729 7.63142 20.0729 8.5747C20.0729 9.51798 20.0729 21.4854 20.0729 21.4854C20.0729 25.9157 20.015 25.9287 14.1762 25.9157C14.1762 25.9157 1.72812 25.8243 0.740634 25.8243C-0.246857 25.8243 -0.246898 22.9369 0.740634 22.9342ZM14.054 0.832942C15.589 -0.277647 18.4903 -0.277647 20.0254 0.832942C21.5237 1.91696 21.5237 4.11804 20.0254 5.20206C18.4903 6.31265 15.2145 6.31497 13.8954 5.02369C12.7384 3.891 12.5557 1.91696 14.054 0.832942Z" fill="#101010"/>
+                    <path d="M22.7387 25.9287C22.0022 25.9287 22.0022 23.1942 22.7387 23.1942C23.4752 23.1942 31.3189 22.8484 32.6472 22.8104C33.9755 22.785 34.9808 22.7723 35.6629 22.6583C36.345 22.5442 36.5963 22.3033 36.7399 22.0498C36.9014 21.809 36.9553 21.6188 36.9553 21.1371L36.8604 19.6621C36.7926 18.6096 35.9192 17.7906 34.8645 17.7906H29.1006C27.996 17.7906 27.1006 16.8949 27.1006 15.7903C27.1006 15.2641 27.1006 14.7873 27.1006 14.5867C27.1006 14.0338 27.1006 11.3828 27.1006 11.3828C27.1006 6.28159 26.4404 6.83838 31.651 6.83838H36.2014C43.2437 6.98081 42.125 5.98355 42.125 11.0215V21.4604C41.7611 26.926 43.2437 25.9287 36.0398 25.9287C36.0398 25.9287 23.4752 25.9287 22.7387 25.9287Z" fill="#101010"/>
+                    <path d="M44.7086 23.042C45.4254 23.042 53.3248 22.8484 54.6172 22.8104C55.9276 22.785 56.7174 22.6583 57.4175 22.5061C57.873 22.4072 58.0704 22.3047 58.2059 22.2006C58.3417 22.0962 58.4647 21.9677 58.5315 21.81C58.5812 21.6929 58.5937 21.5763 58.5937 21.3845L58.0151 15.0732C58.0151 15.0732 57.8223 9.69596 57.8223 8.5877C57.8223 7.47944 64 7.47944 64 8.5877C64 9.69596 64 21.4984 64 21.4984C64 25.9287 64 25.9287 57.9956 25.9287C57.9956 25.9287 45.2206 25.7801 44.7086 25.7801C44.1967 25.7801 43.9919 23.042 44.7086 23.042Z" fill="#101010"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="flex-1">
+    <div class="max-w-[1100px] mx-auto px-6 md:px-12 py-10">
+
+        <h1 class="text-[22px] md:text-[26px] font-semibold text-center mb-2">به پنل فروشنده خوش آمدید!</h1>
+        <p class="text-[14px] text-[#6B6B6B] text-center mb-10">برای شروع فروش، مراحل زیر را تکمیل کنید</p>
+
+        <!-- STEPPER -->
+        <div class="flex items-center justify-center gap-3 mb-12 flex-wrap" dir="rtl">
+            <div class="flex items-center gap-2">
+                <span id="circle-1" class="step-circle on">۱</span>
+                <span id="label-1" class="step-label on text-[13px] whitespace-nowrap">تکمیل اطلاعات برند</span>
+            </div>
+            <span class="step-line"></span>
+            <div class="flex items-center gap-2">
+                <span id="circle-2" class="step-circle off">۲</span>
+                <span id="label-2" class="step-label off text-[13px] whitespace-nowrap">افزودن محصول</span>
+            </div>
+            <span class="step-line"></span>
+            <div class="flex items-center gap-2">
+                <span id="circle-3" class="step-circle off">۳</span>
+                <span id="label-3" class="step-label off text-[13px] whitespace-nowrap">تعریف روش ارسال</span>
+            </div>
+            <span class="step-line"></span>
+            <div class="flex items-center gap-2">
+                <span id="circle-4" class="step-circle off">۴</span>
+                <span id="label-4" class="step-label off text-[13px] whitespace-nowrap">پایان؛ فروشگاه آماده است</span>
+            </div>
+        </div>
+
+        <!-- STEP 1: brand info -->
+        <section id="step1" class="flex flex-col items-center">
+            <div class="max-w-[420px] w-full space-y-4">
+                <input id="brandPhone" type="tel" class="wizard-input text-right" placeholder="شماره تماس برند" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                <input id="brandEmail" type="email" class="wizard-input text-right" placeholder="ایمیل برند" />
+                <input id="brandName" type="text" class="wizard-input text-right" placeholder="نام برند" />
+                <textarea id="brandDesc" class="wizard-textarea text-right" placeholder="توضیح کوتاه درباره برندتان برای نمایش به مشتریان"></textarea>
+
+                <label id="brandLogoBox" class="upload-box w-[160px] h-[120px] mx-auto">
+                    <input id="brandLogoInput" type="file" accept="image/*" class="hidden" />
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16V4M12 4L8 8M12 4L16 8" stroke="#8D8D8D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 16V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V16" stroke="#8D8D8D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>لوگوی برند را<br />بارگذاری کنید</span>
+                </label>
+            </div>
+
+            <p class="max-w-[420px] w-full text-[12px] text-[#9CA3AF] text-center mt-4">شما میتوانید همه ی موارد خواسته شده را بعدا تعییر دهید</p>
+
+            <button id="toStep2Btn" class="h-[48px] px-10 bg-black text-white text-sm mt-6">مرحله بعد</button>
+        </section>
+
+        <!-- STEP 2a: product form -->
+        <section id="step2form" class="hidden grid md:grid-cols-2 gap-10 px-4 md:px-10 py-6">
+            <div>
+                <p class="text-[14px] font-medium mb-2">تا ۶ عکس می‌توانید آپلود کنید.</p>
+                <p class="text-[13px] text-[#6B6B6B] mb-3 leading-6">برای اینکه مشتری‌ها انتخاب راحت‌تری داشته باشند، بهتر است این تصاویر را اضافه کنید:</p>
+                <ul class="text-[13px] text-[#6B6B6B] list-disc pr-5 space-y-1 mb-6">
+                    <li>عکس از جلو</li>
+                    <li>عکس از راست و چپ</li>
+                    <li>عکس از پشت</li>
+                    <li>عکس نزدیک از پارچه برای تشخیص جنس</li>
+                    <li>عکس از نمای کلی محصول</li>
+                </ul>
+                <label id="productPhotoBox" class="upload-box w-[140px] h-[120px]">
+                    <input id="productPhotoInput" type="file" accept="image/*" multiple class="hidden" />
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16V4M12 4L8 8M12 4L16 8" stroke="#8D8D8D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 16V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V16" stroke="#8D8D8D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>آپلود عکس</span>
+                </label>
+            </div>
+
+            <div class="space-y-4">
+                <input id="productName" type="text" class="wizard-input text-right" placeholder="نام محصول" />
+                <input id="productPrice" type="text" class="wizard-input text-right" placeholder="قیمت محصول" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                <input id="productColors" type="text" class="wizard-input text-right" placeholder="رنگ های این محصول" />
+                <input id="productMaterial" type="text" class="wizard-input text-right" placeholder="جنس و متریال محصول" />
+                <input id="productCare" type="text" class="wizard-input text-right" placeholder="راهنمای نگه داری محصول" />
+                <button id="submitProductBtn" class="w-full h-[48px] bg-black text-white text-sm">ثبت محصول</button>
+            </div>
+        </section>
+
+        <!-- STEP 2b: product preview -->
+        <section id="step2preview" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <p class="text-[13px] text-[#6B6B6B]">پیش‌نمایش کارت محصول شما در سایت:</p>
+                <button id="editProductBtn" class="flex items-center gap-1 text-[13px] underline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 14L14 10M8 16L6 18C4.5 19.5 2 19.5 2 17C2 14.5 4.5 12 6 12L8 10M16 8L18 6C19.5 4.5 19.5 2 17 2C14.5 2 12 4.5 12 6L10 8" stroke="#101010" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    ویرایش محصول
+                </button>
+            </div>
+
+            <article class="w-[260px] max-w-full">
+                <div class="relative bg-[#F5F5F5] overflow-hidden aspect-[3/4]">
+                    <button class="absolute top-3 right-3 w-8 h-8 z-20">
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.50393 9.7941L9.32259 15.6547C9.42036 15.7532 9.57964 15.7532 9.67741 15.6547L15.4961 9.7941C17.0013 8.278 17.0013 5.81992 15.4961 4.30382C13.9908 2.78772 11.5503 2.78772 10.0451 4.30382L9.67741 4.67416C9.57964 4.77264 9.42036 4.77264 9.32259 4.67416L8.9549 4.30382C7.44966 2.78772 5.00918 2.78772 3.50393 4.30382C1.99869 5.81992 1.99869 8.27801 3.50393 9.7941Z" stroke="#101010"/>
+                        </svg>
+                    </button>
+
+                    <img id="previewImg" src="" alt="" class="w-full h-full object-cover hidden" />
+
+                    <button class="absolute top-1/2 -translate-y-1/2 left-2 w-[22px] h-[22px] flex items-center justify-center z-20">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.7502 18.26L7.77352 12.2833C7.06768 11.5775 7.06768 10.4225 7.77352 9.71666L13.7502 3.73999" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="absolute top-1/2 -translate-y-1/2 right-2 w-[22px] h-[22px] flex items-center justify-center z-20">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.16797 18.26L14.1446 12.2833C14.8505 11.5775 14.8505 10.4225 14.1446 9.71666L8.16797 3.73999" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <button class="absolute bottom-2 left-2 right-2 h-[32px] bg-white text-[12px] flex items-center justify-center rounded-[1px] shadow border border-gray-200 z-20">
+                        افزودن به سبد خرید
+                    </button>
+                </div>
+
+                <div class="mt-4 text-right text-[13px] leading-6">
+                    <div id="previewName" class="font-medium">نام محصول</div>
+                    <div class="text-gray-600">برند ویل</div>
+                    <div id="previewPrice" class="text-gray-700 mt-1">۰ تومان</div>
+                    <div class="mt-3 flex justify-end gap-1" dir="ltr">
+                        <span class="w-3 h-3 rounded-full bg-[#C6A27D] border border-gray-300"></span>
+                        <span class="w-3 h-3 rounded-full bg-[#164B6F] border border-gray-300"></span>
+                        <span class="w-3 h-3 rounded-full bg-black border border-gray-300"></span>
+                    </div>
+                </div>
+            </article>
+
+            <div class="flex items-center gap-3 mt-8">
+                <button id="toStep3Btn" class="h-[44px] px-6 bg-black text-white text-sm">مرحله بعد</button>
+                <button id="backToStep1Btn" class="h-[44px] px-6 border border-[#101010] text-sm">مرحله قبل</button>
+            </div>
+        </section>
+
+        <!-- STEP 3: shipping -->
+        <section id="step3" class="hidden max-w-[480px] mx-auto">
+            <p class="text-[13px] text-[#6B6B6B] mb-6 leading-6">نحوه ارسال سفارش‌ها و هزینه مربوط به آن را مشخص کنید تا مشتری پیش از ثبت سفارش، اطلاعات کامل ارسال را بداند.</p>
+            <p class="text-[14px] font-medium mb-4">با چه شرکتی محصولات خود را ارسال می‌کنید؟</p>
+
+            <div class="space-y-3 mb-8">
+                <label class="flex items-center justify-between cursor-pointer">
+                    <span class="text-[14px]">پست</span>
+                    <input type="radio" name="shipping" value="پست" class="w-4 h-4" />
+                </label>
+                <label class="flex items-center justify-between cursor-pointer">
+                    <span class="text-[14px]">چاپار</span>
+                    <input type="radio" name="shipping" value="چاپار" class="w-4 h-4" />
+                </label>
+                <label class="flex items-center justify-between cursor-pointer">
+                    <span class="text-[14px]">ماهکس</span>
+                    <input type="radio" name="shipping" value="ماهکس" class="w-4 h-4" />
+                </label>
+                <label class="flex items-center justify-between cursor-pointer">
+                    <span class="text-[14px]">پارباکس</span>
+                    <input type="radio" name="shipping" value="پارباکس" class="w-4 h-4" />
+                </label>
+                <label class="flex items-center justify-between cursor-pointer">
+                    <span class="text-[14px]">دکاپست</span>
+                    <input type="radio" name="shipping" value="دکاپست" class="w-4 h-4" />
+                </label>
+            </div>
+
+            <button id="toStep4Btn" class="h-[48px] px-10 bg-black text-white text-sm">مرحله بعد</button>
+        </section>
+
+        <!-- STEP 4: done -->
+        <section id="step4" class="hidden text-center py-10">
+            <p class="text-[16px] mb-6">تبریک! فروشگاه اختصاصی شما اکنون آنلاین است.</p>
+            <div class="flex items-center justify-center gap-3">
+                <button id="addNewProductBtn" class="h-[44px] px-6 bg-black text-white text-sm">افزودن محصول جدید</button>
+                <a href="/" class="h-[44px] px-6 inline-flex items-center border border-[#101010] text-sm">مشاهده صفحه فروشگاه</a>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script>
+    const steps = ['step1', 'step2form', 'step2preview', 'step3', 'step4'];
+    const stepOf = { step1: 1, step2form: 2, step2preview: 2, step3: 3, step4: 4 };
+
+    function showSection(id) {
+        steps.forEach((s) => document.getElementById(s).classList.toggle('hidden', s !== id));
+        setStepper(stepOf[id]);
+    }
+
+    function setStepper(activeStep) {
+        for (let i = 1; i <= 4; i++) {
+            const circle = document.getElementById(`circle-${i}`);
+            const label = document.getElementById(`label-${i}`);
+            const isOn = i <= activeStep;
+            circle.classList.toggle('on', isOn);
+            circle.classList.toggle('off', !isOn);
+            label.classList.toggle('on', isOn);
+            label.classList.toggle('off', !isOn);
+        }
+    }
+
+    function readImageAsDataUrl(file, callback) {
+        const reader = new FileReader();
+        reader.onload = (e) => callback(e.target.result);
+        reader.readAsDataURL(file);
+    }
+
+    const brandLogoInput = document.getElementById('brandLogoInput');
+    const brandLogoBox = document.getElementById('brandLogoBox');
+    brandLogoInput.addEventListener('change', () => {
+        const file = brandLogoInput.files[0];
+        if (!file) return;
+        readImageAsDataUrl(file, (url) => {
+            brandLogoBox.innerHTML = `<img src="${url}" alt="لوگوی برند" />`;
+        });
+    });
+
+    const productPhotoInput = document.getElementById('productPhotoInput');
+    const previewImg = document.getElementById('previewImg');
+    let firstProductImageUrl = '';
+    productPhotoInput.addEventListener('change', () => {
+        const file = productPhotoInput.files[0];
+        if (!file) return;
+        readImageAsDataUrl(file, (url) => {
+            firstProductImageUrl = url;
+        });
+    });
+
+    document.getElementById('toStep2Btn').addEventListener('click', () => {
+        if (!document.getElementById('brandName').value.trim() || !document.getElementById('brandPhone').value.trim()) return;
+        showSection('step2form');
+    });
+
+    document.getElementById('submitProductBtn').addEventListener('click', () => {
+        const name = document.getElementById('productName').value.trim();
+        const price = document.getElementById('productPrice').value.trim();
+        if (!name || !price) return;
+
+        document.getElementById('previewName').textContent = name;
+        document.getElementById('previewPrice').textContent = `${Number(price).toLocaleString('fa-IR')} تومان`;
+
+        if (firstProductImageUrl) {
+            previewImg.src = firstProductImageUrl;
+            previewImg.classList.remove('hidden');
+        }
+
+        showSection('step2preview');
+    });
+
+    document.getElementById('editProductBtn').addEventListener('click', () => showSection('step2form'));
+    document.getElementById('backToStep1Btn').addEventListener('click', () => showSection('step1'));
+    document.getElementById('toStep3Btn').addEventListener('click', () => showSection('step3'));
+
+    document.getElementById('toStep4Btn').addEventListener('click', () => {
+        const selected = document.querySelector('input[name="shipping"]:checked');
+        if (!selected) return;
+        showSection('step4');
+    });
+
+    document.getElementById('addNewProductBtn').addEventListener('click', () => {
+        document.getElementById('productName').value = '';
+        document.getElementById('productPrice').value = '';
+        document.getElementById('productColors').value = '';
+        document.getElementById('productMaterial').value = '';
+        document.getElementById('productCare').value = '';
+        previewImg.classList.add('hidden');
+        firstProductImageUrl = '';
+        showSection('step2form');
+    });
+</script>
+
+</body>
+</html>

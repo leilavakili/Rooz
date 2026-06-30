@@ -69,9 +69,62 @@ app.get('/Basket', (req, res) => {
   res.sendFile(path.join(ROOT_DIR, 'pages', 'Basket.html'));
 });
 
+app.get('/Basketf', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'Basket-F.html'));
+});
+
+app.get('/Delivery', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'Delivery-info.html'));
+});
+
+app.get('/favoritef', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'favorite-f.html'));
+});
+
+app.get('/favorite', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'favorite.html'));
+});
+
+app.get('/forgetpass', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'forgetpass-phone.html'));
+});
+
+app.get('/forgetpass2', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'forgetpass-mob.html'));
+});
+
+app.get('/product-detail', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'PDP.html'));
+});
+
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'signup.html'));
+});
+
+app.get('/add', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'add.html'));
+});
+
+app.get('/wellcome', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages', 'are-you-seller.html'));
+});
+
+app.get('/seller-signup', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages/seller', 'ssignup.html'));
+});
+
+app.get('/seller-dashboard', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages/seller', 'sdashboard.html'));
+});
+
+app.get('/seller-panel', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'pages/seller', 'spanel.html'));
+});
+
 app.use((req, res) => {
   res.sendFile(path.join(ROOT_DIR, 'pages', 'home.html'));
 });
+
 
 // استارت سرور
 if (fs.existsSync(socketPath)) {
